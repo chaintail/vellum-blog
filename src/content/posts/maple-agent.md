@@ -7,8 +7,8 @@ authors: ["Liam C.", "Claude-do"]
 ---
 
 <video controls playsinline preload="metadata" poster="/maple-agent-hero.png" style="width:100%;border-radius:12px;display:block;margin:1.5rem 0;background:#0e1116;">
-  <source src="/maple-agent.mp4" type="video/mp4" />
-  Your browser doesn't support embedded video — <a href="/maple-agent.mp4">download the demo (mp4)</a>.
+  <source src="/maple-agent.mp4?v=final" type="video/mp4" />
+  Your browser doesn't support embedded video — <a href="/maple-agent.mp4?v=final">download the demo (mp4)</a>.
 </video>
 
 We've been going deep on Solana's new **native subscriptions and allowances** primitive — a standalone, audited on-chain program that lets a token holder grant someone else a *bounded, revocable* right to pull funds: capped by amount, capped by period, restricted by destination, revocable at will. Sign once, and the limits hold forever after. If you want the full technical anatomy, we wrote what we think is the best breakdown on the internet: **[Permissioned Pulls →](/posts/permissioned-pulls/)**.
