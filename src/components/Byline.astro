@@ -1,0 +1,11 @@
+---
+import { AUTHOR_URLS } from '../authors';
+const { authors = [] } = Astro.props;
+---
+{authors.length > 0 && (
+  <p class="byline">By {authors.map((a: string, i: number) => (
+    <>{i > 0 ? ', ' : ''}{AUTHOR_URLS[a]
+      ? <a href={AUTHOR_URLS[a]} target="_blank" rel="noopener noreferrer">{a}</a>
+      : a}</>
+  ))}</p>
+)}

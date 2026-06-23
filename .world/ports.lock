@@ -1,0 +1,5 @@
+worktree: /home/claude/code/vellum-blog
+project: vellum-blog
+allocated_at: '2026-06-23T16:28:42-04:00'
+ports:
+  vellum-preview: 58690

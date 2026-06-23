@@ -1,0 +1,30 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Byline from '../../components/Byline.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts');
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const fmtDate = (d) =>
+  d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+---
+<BaseLayout title={`${post.data.title} — Vellum`} description={post.data.description}>
+  <article>
+    <header class="article-header">
+      <span class="date">{fmtDate(post.data.pubDate)}</span>
+      <h1>{post.data.title}</h1>
+      <p class="lede">{post.data.description}</p>
+      <Byline authors={post.data.authors} />
+    </header>
+    <div class="prose">
+      <Content />
+    </div>
+    <a class="back" href="/">&larr; All posts</a>
+  </article>
+</BaseLayout>

@@ -1,0 +1,10 @@
+# Port declarations for port-for allocation (ADR 0003 + 2026-04-11 amendment).
+#
+# Vellum (static Astro blog) owns the 587xx frontend slot scratch sub-band.
+# Static preview server only; no backend.
+repo: vellum-blog
+purposes:
+  - name: vellum-preview
+    type: frontend
+    env: scratch
+    canonical: 58790    # astro preview (static dist/) — scratch sub-band

@@ -1,0 +1,27 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Byline from '../components/Byline.astro';
+
+const posts = await getCollection('posts');
+posts.sort((a, b) => {
+  if (a.data.featured !== b.data.featured) return a.data.featured ? -1 : 1;
+  return b.data.pubDate.valueOf() - a.data.pubDate.valueOf();
+});
+
+const fmtDate = (d) =>
+  d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+---
+<BaseLayout title="Vellum" description="Notes on payment rails and protocol design.">
+  <ul class="post-list">
+    {posts.map((post) => (
+      <li class={`post-item${post.data.featured ? ' featured' : ''}`}>
+        {post.data.featured && <span class="post-flag">Featured</span>}
+        <h2><a href={`/posts/${post.id}/`}>{post.data.title}</a></h2>
+        <p class="desc">{post.data.description}</p>
+        <span class="date">{fmtDate(post.data.pubDate)}</span>
+        <Byline authors={post.data.authors} />
+      </li>
+    ))}
+  </ul>
+</BaseLayout>
