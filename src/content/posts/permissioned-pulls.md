@@ -3,7 +3,7 @@ title: "Permissioned Pulls: Solana's New Authorization Layer for Subscriptions a
 description: "A standalone, audited Solana program that lets a token holder grant a bounded, revocable right to pull funds — capped by amount, period, and destination. The full anatomy, a build walkthrough, and an honest accounting of what it doesn't do."
 pubDate: 2026-06-10
 featured: true
-authors: ["Liam C.", "Mikail R.", "Claude-do"]
+authors: ["Mikail R.", "Liam C.", "Claude-do"]
 heroImage: "/img/a1.png"
 heroAlt: "A bounded pull payment: a wallet's metered valve releases a capped stream of tokens to a recipient, while an over-limit pull ricochets off the on-chain cap."
 ---
