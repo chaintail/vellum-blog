@@ -18,7 +18,7 @@ const words = post.body.split(/\s+/).filter(Boolean).length;
 const readingMin = Math.max(1, Math.round(words / 200));
 const audioSrc = `/audio/${post.id}.mp3`;
 ---
-<BaseLayout title={`${post.data.title} — Vellum`} description={post.data.description}>
+<BaseLayout title={`${post.data.title} — Vellum`} description={post.data.description} image={post.data.heroImage} ogType="article">
   <div class="reading-progress" aria-hidden="true"><span id="rpb"></span></div>
   <article>
     {post.data.heroImage && (
