@@ -4,9 +4,9 @@ description: "A standalone, audited Solana program that lets a token holder gran
 pubDate: 2026-06-10
 featured: true
 authors: ["Liam C.", "Mikail R.", "Claude-do"]
+heroImage: "/img/a1.png"
+heroAlt: "A bounded pull payment: a wallet's metered valve releases a capped stream of tokens to a recipient, while an over-limit pull ricochets off the on-chain cap."
 ---
-
-![A bounded pull payment: a wallet's metered valve releases a capped stream of tokens to a recipient, while an over-limit pull ricochets off the on-chain cap.](/img/a1.png)
 
 Sometime around June 3, 2026, a program quietly went live on Solana mainnet at address `De1egAFMkMWZSN5rYXRj9CAdheBamobVNubTsi9avR44`. Most of the coverage since has filed it under "recurring payments," which is the least interesting and least accurate way to describe it. What actually shipped is an **authorization layer**: a shared, audited, public primitive that lets a token holder grant someone else a *bounded right to pull funds* — capped by amount, capped by period, restricted by destination, revocable at will — without handing over a key, signing every charge, or trusting a custodian.
 

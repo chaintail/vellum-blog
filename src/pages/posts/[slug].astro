@@ -21,16 +21,21 @@ const audioSrc = `/audio/${post.id}.mp3`;
 <BaseLayout title={`${post.data.title} — Vellum`} description={post.data.description}>
   <div class="reading-progress" aria-hidden="true"><span id="rpb"></span></div>
   <article>
+    {post.data.heroImage && (
+      <figure class="post-hero">
+        <img src={post.data.heroImage} alt={post.data.heroAlt} />
+      </figure>
+    )}
     <header class="article-header">
       <p class="article-meta"><span class="date">{fmtDate(post.data.pubDate)}</span> · <span class="reading-time">{readingMin} min read</span></p>
       <h1>{post.data.title}</h1>
       <p class="lede">{post.data.description}</p>
       <Byline authors={post.data.authors} />
-      <div class="audio-player">
-        <span class="audio-label">🎧 Listen to this post</span>
-        <audio controls preload="none" src={audioSrc}></audio>
-      </div>
     </header>
+    <div class="audio-player">
+      <span class="audio-label">🎧 Listen to this post</span>
+      <audio controls preload="none" src={audioSrc}></audio>
+    </div>
     <div class="prose">
       <Content />
     </div>
@@ -50,4 +55,22 @@ const audioSrc = `/audio/${post.id}.mp3`;
       update();
     })();
   </script>
+  <style>
+    /* Hero breaks out wider than the 720px reading column, centered on the
+       viewport. min(1080px, 94vw) caps the width so it never exceeds the
+       viewport — no horizontal scrollbar even on mobile. */
+    .post-hero {
+      width: min(1080px, 94vw);
+      margin-left: 50%;
+      transform: translateX(-50%);
+      margin-top: 0;
+      margin-bottom: 2rem;
+    }
+    .post-hero img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 12px;
+    }
+  </style>
 </BaseLayout>

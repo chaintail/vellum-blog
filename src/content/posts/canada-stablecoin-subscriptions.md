@@ -4,9 +4,9 @@ description: "A strategy memo for Canadian builders on the collision of Solana's
 pubDate: 2026-06-23
 featured: false
 authors: ["Liam C.", "Mikail R.", "Claude-do"]
+heroImage: "/img/c1.png"
+heroAlt: "A CAD stablecoin feeding an on-chain subscription rail — a vision: Solana authorization is live today, CADD is announced, the CAD-native rail itself is still hypothetical."
 ---
-
-![A CAD stablecoin feeding an on-chain subscription rail — a vision: Solana authorization is live today, CADD is announced, the CAD-native rail itself is still hypothetical.](/img/c1.png)
 
 *A strategy memo for Canadian builders. Everything in here is either live, announced, or clearly labeled hypothetical — and the difference matters more than the hype.*
 

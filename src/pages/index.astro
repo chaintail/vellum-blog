@@ -17,6 +17,16 @@ const fmtDate = (d) =>
     {posts.map((post) => (
       <li class={`post-item${post.data.featured ? ' featured' : ''}`}>
         {post.data.featured && <span class="post-flag">Featured</span>}
+        {post.data.heroImage && (
+          <a class="hero-link" href={`/posts/${post.id}/`}>
+            <img
+              class="hero-image"
+              src={post.data.heroImage}
+              alt={post.data.heroAlt ?? ''}
+              loading="lazy"
+            />
+          </a>
+        )}
         <h2><a href={`/posts/${post.id}/`}>{post.data.title}</a></h2>
         <p class="desc">{post.data.description}</p>
         <span class="date">{fmtDate(post.data.pubDate)} · {Math.max(1, Math.round(post.body.split(/\s+/).filter(Boolean).length / 200))} min read</span>
@@ -25,3 +35,27 @@ const fmtDate = (d) =>
     ))}
   </ul>
 </BaseLayout>
+
+<style>
+  .hero-link {
+    display: block;
+    margin: 0 0 0.85rem;
+    line-height: 0;
+  }
+
+  .hero-image {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 1px solid var(--rule);
+    background: var(--paper-2);
+  }
+
+  /* Featured post gets a larger, banner-style hero */
+  .post-item.featured .hero-image {
+    aspect-ratio: 21 / 9;
+  }
+</style>

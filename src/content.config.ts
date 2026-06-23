@@ -9,6 +9,8 @@ const posts = defineCollection({
     pubDate: z.coerce.date(),
     featured: z.boolean().default(false),
     authors: z.array(z.string()).default([]),
+    heroImage: z.string().optional(),
+    heroAlt: z.string().optional(),
   }),
 });
 
