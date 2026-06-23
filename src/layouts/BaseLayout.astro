@@ -28,5 +28,42 @@ const { title, description } = Astro.props;
         <slot />
       </div>
     </main>
+
+    <div class="zoom-overlay" id="zoomOverlay">
+      <span class="zoom-hint">click anywhere or press Esc to close</span>
+    </div>
+    <script>
+      (function () {
+        const overlay = document.getElementById('zoomOverlay');
+        if (!overlay) return;
+        const clear = () => overlay.querySelectorAll('img, svg').forEach((n) => n.remove());
+        const close = () => { overlay.classList.remove('open'); clear(); };
+        document.addEventListener('click', (e) => {
+          if (overlay.classList.contains('open')) { close(); return; }
+          const t = e.target;
+          if (!t || !t.closest) return;
+          const img = t.closest('.prose img');
+          if (img) {
+            const c = document.createElement('img');
+            c.src = img.currentSrc || img.src;
+            overlay.appendChild(c);
+            overlay.classList.add('open');
+            return;
+          }
+          const mer = t.closest('.prose .mermaid');
+          if (mer) {
+            const svg = mer.querySelector('svg');
+            if (!svg) return;
+            const clone = svg.cloneNode(true);
+            clone.removeAttribute('width');
+            clone.removeAttribute('height');
+            clone.removeAttribute('style');
+            overlay.appendChild(clone);
+            overlay.classList.add('open');
+          }
+        });
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+      })();
+    </script>
   </body>
 </html>

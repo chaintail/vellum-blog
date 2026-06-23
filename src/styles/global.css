@@ -143,6 +143,73 @@ main { padding: 56px 0 96px; }
   font-style: italic;
 }
 
+/* Figures / images — constrain to the column, hint that they zoom */
+.prose img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 1.9em auto;
+  border-radius: 10px;
+  border: 1px solid var(--rule);
+  cursor: zoom-in;
+}
+
+/* Mermaid diagrams — fit the column, zoomable (small inline, readable on click) */
+.prose .mermaid {
+  margin: 1.9em 0;
+  text-align: center;
+  cursor: zoom-in;
+  overflow-x: auto;
+}
+.prose .mermaid svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Click-to-zoom lightbox (images + mermaid) */
+.zoom-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(20, 16, 12, 0.88);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 3vh 3vw;
+  cursor: zoom-out;
+  overflow: auto;
+}
+.zoom-overlay.open { display: flex; }
+.zoom-overlay img {
+  max-width: 96vw;
+  max-height: 92vh;
+  width: auto;
+  height: auto;
+  background: var(--paper, #faf8f3);
+  border-radius: 10px;
+  box-shadow: 0 12px 60px rgba(0, 0, 0, 0.55);
+}
+.zoom-overlay svg {
+  width: 88vw;
+  max-width: 1300px;
+  height: auto;
+  background: var(--paper, #faf8f3);
+  border-radius: 10px;
+  padding: 16px;
+  box-shadow: 0 12px 60px rgba(0, 0, 0, 0.55);
+}
+.zoom-hint {
+  position: fixed;
+  bottom: 16px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.66);
+  font-family: var(--mono, monospace);
+  font-size: 0.78rem;
+  pointer-events: none;
+}
+
 /* Inline code */
 .prose :not(pre) > code {
   font-family: var(--mono);
@@ -221,5 +288,72 @@ main { padding: 56px 0 96px; }
   margin-top: 0.4rem;
   font-size: 0.95rem;
   font-style: italic;
-  color: #6b5f4e;
+  color: var(--ink-faint);
+}
+.post-item .byline {
+  margin: 0.3rem 0 0;
+  font-size: 0.9rem;
+  font-style: italic;
+  color: var(--ink-faint);
+}
+.byline a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(154, 59, 31, 0.28);
+}
+.byline a:hover {
+  border-bottom-color: var(--accent);
+}
+
+/* reading progress bar */
+.reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 50;
+  background: transparent;
+}
+.reading-progress span {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: var(--accent);
+  transition: width 0.08s linear;
+}
+
+/* article meta + reading time */
+.article-meta {
+  margin: 0 0 0.6rem;
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+/* audio player */
+.audio-player {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-top: 1.25rem;
+  padding: 0.7rem 0.9rem;
+  background: var(--paper-2);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+}
+.audio-label {
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
+.audio-player audio {
+  height: 38px;
+  flex: 1;
+  min-width: 220px;
 }

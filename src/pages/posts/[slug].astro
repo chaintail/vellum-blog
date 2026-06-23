@@ -12,19 +12,42 @@ const { post } = Astro.props;
 const { Content } = await render(post);
 
 const fmtDate = (d) =>
-  d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
+
+const words = post.body.split(/\s+/).filter(Boolean).length;
+const readingMin = Math.max(1, Math.round(words / 200));
+const audioSrc = `/audio/${post.id}.mp3`;
 ---
 <BaseLayout title={`${post.data.title} — Vellum`} description={post.data.description}>
+  <div class="reading-progress" aria-hidden="true"><span id="rpb"></span></div>
   <article>
     <header class="article-header">
-      <span class="date">{fmtDate(post.data.pubDate)}</span>
+      <p class="article-meta"><span class="date">{fmtDate(post.data.pubDate)}</span> · <span class="reading-time">{readingMin} min read</span></p>
       <h1>{post.data.title}</h1>
       <p class="lede">{post.data.description}</p>
       <Byline authors={post.data.authors} />
+      <div class="audio-player">
+        <span class="audio-label">🎧 Listen to this post</span>
+        <audio controls preload="none" src={audioSrc}></audio>
+      </div>
     </header>
     <div class="prose">
       <Content />
     </div>
     <a class="back" href="/">&larr; All posts</a>
   </article>
+  <script is:inline>
+    (function () {
+      var bar = document.getElementById('rpb');
+      if (!bar) return;
+      function update() {
+        var h = document.documentElement;
+        var max = h.scrollHeight - h.clientHeight;
+        bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+      }
+      addEventListener('scroll', update, { passive: true });
+      addEventListener('resize', update);
+      update();
+    })();
+  </script>
 </BaseLayout>

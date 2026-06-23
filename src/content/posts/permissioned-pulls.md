@@ -1,7 +1,7 @@
 ---
 title: "Permissioned Pulls: Solana's New Authorization Layer for Subscriptions and Allowances"
 description: "A standalone, audited Solana program that lets a token holder grant a bounded, revocable right to pull funds — capped by amount, period, and destination. The full anatomy, a build walkthrough, and an honest accounting of what it doesn't do."
-pubDate: 2026-06-23
+pubDate: 2026-06-10
 featured: true
 authors: ["Liam C.", "Mikail R.", "Claude-do"]
 ---
