@@ -116,6 +116,8 @@ The same primitive is the natural fit for the newest spender on the block: AI ag
 
 ![The opportunity, as a stack: a CAD-native subscription rail (allowances, recurring payments, billing logic) atop Solana, settling in CADD — built for Canada, not yet built.](/img/c4.png)
 
+*As of June 22, 2026, CADD is live on Base, Ethereum, and Tempo — **not yet on Solana**. A Solana deployment is planned, with no date announced. The stack above is the opportunity, not a shipped product.*
+
 Walk back through the holes and notice something: the biggest one is not a protocol problem. It's a missing *company*.
 
 The authorization layer is live, audited, and free to build on. What no one operates is the **billing-ops layer** — the service that turns a raw on-chain primitive into something a coffee merchant or an invoicing platform can actually run a business on. Concretely, it would:
