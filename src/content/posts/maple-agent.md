@@ -6,6 +6,11 @@ featured: true
 authors: ["Liam C.", "Claude-do"]
 ---
 
+<div style="display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin:1.75rem 0;padding:1.15rem 1.4rem;border:1px solid #e3d9c2;border-left:5px solid #C8102E;border-radius:12px;background:#fbf7ee;">
+  <span style="font-size:1.08rem;font-weight:600;line-height:1.4;">🍁 MapleAgent is live — try the interactive demo yourself.</span>
+  <a href="https://maple.vellum.network" style="flex:0 0 auto;display:inline-block;padding:0.65rem 1.25rem;border-radius:8px;background:#C8102E;color:#fff;font-weight:700;text-decoration:none;white-space:nowrap;">Open the live demo&nbsp;→</a>
+</div>
+
 <video controls playsinline preload="metadata" poster="/maple-agent-hero.png" style="width:100%;border-radius:12px;display:block;margin:1.5rem 0;background:#0e1116;">
   <source src="/maple-agent.mp4?v=final" type="video/mp4" />
   Your browser doesn't support embedded video — <a href="/maple-agent.mp4?v=final">download the demo (mp4)</a>.
