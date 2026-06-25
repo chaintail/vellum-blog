@@ -1,6 +1,9 @@
-// Author display name -> Superteam Earn profile URL
+// Author display name -> internal Vellum team-profile route.
+// These routes currently redirect to Superteam Earn (see astro.config.mjs
+// `redirects`); when real /team/<slug> profile pages are built they take over,
+// so bylines keep pointing at the right place automatically.
 export const AUTHOR_URLS: Record<string, string> = {
-  'Liam C.': 'https://superteam.fun/earn/t/chaintail',
-  'Mikail R.': 'https://superteam.fun/earn/t/mikail',
-  'Claude-do': 'https://superteam.fun/earn/t/claude-do',
+  'Liam C.': '/team/liam',
+  'Mikail R.': '/team/mikail',
+  'Claude-do': '/team/claude-do',
 };

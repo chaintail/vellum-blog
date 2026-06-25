@@ -1,0 +1,73 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const members = [
+  { name: 'Liam C.', role: 'Co-founder', href: '/team/liam', initial: 'L' },
+  { name: 'Mikail R.', role: 'Co-founder', href: '/team/mikail', initial: 'M' },
+  { name: 'Claude-do', role: 'AI teammate', href: '/team/claude-do', initial: 'C' },
+  { name: 'Coming soon', role: '', href: null, initial: '·' },
+];
+---
+<BaseLayout title="Team — Vellum" description="The people (and the agent) behind Vellum.">
+  <h1>The team</h1>
+  <p class="team-intro">The people — and the agent — behind Vellum.</p>
+  <div class="team-grid">
+    {members.map((m) => (
+      m.href ? (
+        <a class="team-card" href={m.href}>
+          <span class="team-avatar">{m.initial}</span>
+          <span class="team-name">{m.name}</span>
+          <span class="team-role">{m.role}</span>
+          <span class="team-link">View profile &rarr;</span>
+        </a>
+      ) : (
+        <div class="team-card placeholder">
+          <span class="team-avatar">{m.initial}</span>
+          <span class="team-name">{m.name}</span>
+        </div>
+      )
+    ))}
+  </div>
+  <style>
+    h1 { font-size: 2.1rem; margin: 0 0 0.3rem; }
+    .team-intro { color: var(--ink-soft); margin: 0 0 2rem; }
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+    .team-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 0.4rem;
+      padding: 1.7rem 1rem;
+      text-decoration: none;
+      background: var(--paper-2);
+      border: 1px solid var(--rule);
+      border-radius: 14px;
+      color: var(--ink);
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .team-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .team-card.placeholder { opacity: 0.55; }
+    .team-avatar {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--serif);
+      font-weight: 700;
+      font-size: 1.6rem;
+      background: var(--paper);
+      color: var(--accent);
+      border: 1px solid var(--rule);
+    }
+    .team-name { font-weight: 700; font-size: 1.1rem; }
+    .team-role { font-size: 0.85rem; color: var(--ink-faint); font-family: var(--sans); }
+    .team-link { font-size: 0.85rem; color: var(--accent); margin-top: 0.3rem; }
+  </style>
+</BaseLayout>
