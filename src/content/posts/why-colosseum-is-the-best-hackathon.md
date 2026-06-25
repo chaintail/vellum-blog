@@ -30,7 +30,7 @@ Colosseum is **company-shaped**. The hackathon is just the qualifier.
 
 Here's the first turn of the story. Colosseum isn't a startup that decided to run a contest. It's the *institutionalization* of the single most productive developer-onboarding engine in crypto.
 
-From 2020, a Solana Foundation growth lead named **Matty Taylor** built the Foundation's hackathon program from scratch — eight straight online hackathons that pulled in 60,000+ builders and seeded companies like **Tensor, Squads, StepN, and Jito**. In January 2024, the Foundation did something telling: it *spun the program out* into an independent company — Colosseum — with its own accelerator and fund, explicitly modeled as "the YC for Solana."
+From 2020, a Solana Foundation growth lead named **[Matty Taylor](https://colosseum.com/about)** built the Foundation's hackathon program from scratch — eight straight online hackathons that pulled in 60,000+ builders and seeded companies like **Tensor, Squads, StepN, and Jito**. In January 2024, the Foundation did something telling: it *spun the program out* into an independent company — Colosseum — with its own accelerator and fund, explicitly modeled as "the YC for Solana."
 
 Taylor's pitch for why a hackathon beats a pitch deck is the cleanest articulation of the whole thesis:
 
@@ -77,7 +77,7 @@ A few of the companies this machine has produced — across the Foundation-era h
 <text x="100" y="90" text-anchor="middle" font-size="30" font-weight="700" fill="#232019" font-family="Georgia,serif">$122.5M</text>
 <text x="100" y="114" text-anchor="middle" font-size="10.5" fill="#57503f" letter-spacing="0.5">PROFIT · ONE QUARTER</text>
 </svg>
-<div><strong>StepN</strong><br><span style="font-size:0.82rem;color:#8a8170;">4th place, $15K hackathon entry</span></div>
+<div><img src="/img/logos/stepn.png" alt="" style="height:26px;width:auto;display:block;margin:0 auto 0.35rem;border:0;border-radius:0;cursor:default;"><strong>StepN</strong><br><span style="font-size:0.82rem;color:#8a8170;">4th place, $15K hackathon entry</span></div>
 </div>
 
 <div style="text-align:center;">
@@ -87,7 +87,7 @@ A few of the companies this machine has produced — across the Foundation-era h
 <text x="100" y="90" text-anchor="middle" font-size="30" font-weight="700" fill="#232019" font-family="Georgia,serif">$674M</text>
 <text x="100" y="114" text-anchor="middle" font-size="10.5" fill="#57503f" letter-spacing="0.5">2024 REVENUE</text>
 </svg>
-<div><strong>Jito</strong><br><span style="font-size:0.82rem;color:#8a8170;">liquid staking + MEV</span></div>
+<div><img src="/img/logos/jito.png" alt="" style="height:26px;width:auto;display:block;margin:0 auto 0.35rem;border:0;border-radius:0;cursor:default;"><strong>Jito</strong><br><span style="font-size:0.82rem;color:#8a8170;">liquid staking + MEV</span></div>
 </div>
 
 <div style="text-align:center;">
@@ -97,7 +97,7 @@ A few of the companies this machine has produced — across the Foundation-era h
 <text x="100" y="90" text-anchor="middle" font-size="30" font-weight="700" fill="#232019" font-family="Georgia,serif">$15B+</text>
 <text x="100" y="114" text-anchor="middle" font-size="10.5" fill="#57503f" letter-spacing="0.5">ASSETS SECURED</text>
 </svg>
-<div><strong>Squads</strong><br><span style="font-size:0.82rem;color:#8a8170;">multisig for 300+ teams</span></div>
+<div><img src="/img/logos/squads.png" alt="" style="height:26px;width:auto;display:block;margin:0 auto 0.35rem;border:0;border-radius:0;cursor:default;"><strong>Squads</strong><br><span style="font-size:0.82rem;color:#8a8170;">multisig for 300+ teams</span></div>
 </div>
 
 <div style="text-align:center;">
@@ -107,7 +107,7 @@ A few of the companies this machine has produced — across the Foundation-era h
 <text x="100" y="90" text-anchor="middle" font-size="29" font-weight="700" fill="#232019" font-family="Georgia,serif">$640M</text>
 <text x="100" y="114" text-anchor="middle" font-size="10.5" fill="#57503f" letter-spacing="0.5">LAUNCH-DAY VOLUME</text>
 </svg>
-<div><strong>Tensor</strong><br><span style="font-size:0.82rem;color:#8a8170;">bootstrapped from ~$65K in prizes</span></div>
+<div><img src="/img/logos/tensor.png" alt="" style="height:26px;width:auto;display:block;margin:0 auto 0.35rem;border:0;border-radius:0;cursor:default;"><strong>Tensor</strong><br><span style="font-size:0.82rem;color:#8a8170;">bootstrapped from ~$65K in prizes</span></div>
 </div>
 
 <div style="text-align:center;">
@@ -117,7 +117,7 @@ A few of the companies this machine has produced — across the Foundation-era h
 <text x="100" y="90" text-anchor="middle" font-size="30" font-weight="700" fill="#232019" font-family="Georgia,serif">$611K</text>
 <text x="100" y="114" text-anchor="middle" font-size="10.5" fill="#57503f" letter-spacing="0.5">PEAK DAILY REVENUE</text>
 </svg>
-<div><strong>ORE</strong><br><span style="font-size:0.82rem;color:#8a8170;">Colosseum Renaissance champion</span></div>
+<div><img src="/img/logos/ore.png" alt="" style="height:26px;width:auto;display:block;margin:0 auto 0.35rem;border:0;border-radius:0;cursor:default;"><strong>ORE</strong><br><span style="font-size:0.82rem;color:#8a8170;">Colosseum Renaissance champion</span></div>
 </div>
 
 <div style="text-align:center;">
@@ -127,7 +127,7 @@ A few of the companies this machine has produced — across the Foundation-era h
 <text x="100" y="90" text-anchor="middle" font-size="30" font-weight="700" fill="#232019" font-family="Georgia,serif">$1.7B</text>
 <text x="100" y="114" text-anchor="middle" font-size="10.5" fill="#57503f" letter-spacing="0.5">STAKING TVL</text>
 </svg>
-<div><strong>Marinade</strong><br><span style="font-size:0.82rem;color:#8a8170;">launched on an ~$80K grant</span></div>
+<div><img src="/img/logos/marinade.png" alt="" style="height:26px;width:auto;display:block;margin:0 auto 0.35rem;border:0;border-radius:0;cursor:default;"><strong>Marinade</strong><br><span style="font-size:0.82rem;color:#8a8170;">launched on an ~$80K grant</span></div>
 </div>
 
 <div style="text-align:center;">
@@ -137,7 +137,7 @@ A few of the companies this machine has produced — across the Foundation-era h
 <text x="100" y="90" text-anchor="middle" font-size="30" font-weight="700" fill="#232019" font-family="Georgia,serif">$2.5M</text>
 <text x="100" y="114" text-anchor="middle" font-size="10.5" fill="#57503f" letter-spacing="0.5">SEED ROUND</text>
 </svg>
-<div><strong>DeCharge</strong><br><span style="font-size:0.82rem;color:#8a8170;">EV-charging DePIN · Cohort 1</span></div>
+<div><img src="/img/logos/decharge.png" alt="" style="height:26px;width:auto;display:block;margin:0 auto 0.35rem;border:0;border-radius:0;cursor:default;"><strong>DeCharge</strong><br><span style="font-size:0.82rem;color:#8a8170;">EV-charging DePIN · Cohort 1</span></div>
 </div>
 
 </div>

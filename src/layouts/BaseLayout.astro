@@ -35,8 +35,13 @@ const canonical = new URL(Astro.url.pathname, site).href;
   <body>
     <header class="site-header">
       <div class="wrap">
-        <a href="/" class="wordmark">Vellum</a>
+        <a href="https://vellum.network" class="wordmark">Vellum</a>
         <span class="tagline">notes on payment rails &amp; protocol design</span>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+        <nav class="nav-links" id="navLinks">
+          <a href="/">Articles</a>
+          <a href="https://vellum.network">Home</a>
+        </nav>
       </div>
     </header>
     <main>
@@ -59,7 +64,7 @@ const canonical = new URL(Astro.url.pathname, site).href;
           const t = e.target;
           if (!t || !t.closest) return;
           const img = t.closest('.prose img');
-          if (img) {
+          if (img && !/\/logos\//.test(img.currentSrc || img.src)) {
             const c = document.createElement('img');
             c.src = img.currentSrc || img.src;
             overlay.appendChild(c);
@@ -79,6 +84,17 @@ const canonical = new URL(Astro.url.pathname, site).href;
           }
         });
         document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+      })();
+    </script>
+    <script>
+      (function () {
+        const t = document.getElementById('navToggle');
+        const n = document.getElementById('navLinks');
+        if (!t || !n) return;
+        t.addEventListener('click', () => {
+          const open = n.classList.toggle('open');
+          t.setAttribute('aria-expanded', String(open));
+        });
       })();
     </script>
   </body>
