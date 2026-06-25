@@ -5,8 +5,9 @@ interface Props {
   description?: string;
   image?: string;
   ogType?: string;
+  jsonLd?: unknown;
 }
-const { title, description, image = '/og/vellum-default.png', ogType = 'website' } = Astro.props;
+const { title, description, image = '/og/vellum-default.png', ogType = 'website', jsonLd } = Astro.props;
 const site = Astro.site ?? new URL('https://blog.vellum.network');
 const ogImage = new URL(image, site).href;
 const canonical = new URL(Astro.url.pathname, site).href;
@@ -30,6 +31,7 @@ const canonical = new URL(Astro.url.pathname, site).href;
     <meta name="twitter:title" content={title} />
     {description && <meta name="twitter:description" content={description} />}
     <meta name="twitter:image" content={ogImage} />
+    {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23f7f3ea'/%3E%3Ctext x='16' y='23' font-size='20' font-family='Georgia,serif' font-weight='700' text-anchor='middle' fill='%239a3b1f'%3EV%3C/text%3E%3C/svg%3E" />
   </head>
   <body>

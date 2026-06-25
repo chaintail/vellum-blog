@@ -17,8 +17,23 @@ const fmtDate = (d) =>
 const words = post.body.split(/\s+/).filter(Boolean).length;
 const readingMin = Math.max(1, Math.round(words / 200));
 const audioSrc = `/audio/${post.id}.mp3`;
+
+const jsonLdSite = Astro.site ?? new URL('https://blog.vellum.network');
+const abs = (p) => new URL(p, jsonLdSite).href;
+const articleJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: post.data.title,
+  description: post.data.description,
+  datePublished: post.data.pubDate.toISOString(),
+  dateModified: post.data.pubDate.toISOString(),
+  ...(post.data.heroImage ? { image: abs(post.data.heroImage) } : {}),
+  author: (post.data.authors ?? []).map((name) => ({ '@type': 'Person', name })),
+  publisher: { '@type': 'Organization', name: 'Vellum', url: 'https://vellum.network' },
+  mainEntityOfPage: abs(`/posts/${post.id}/`),
+};
 ---
-<BaseLayout title={`${post.data.title} — Vellum`} description={post.data.description} image={post.data.heroImage} ogType="article">
+<BaseLayout title={`${post.data.title} — Vellum`} description={post.data.description} image={post.data.heroImage} ogType="article" jsonLd={articleJsonLd}>
   <div class="reading-progress" aria-hidden="true"><span id="rpb"></span></div>
   <article>
     {post.data.heroImage && (
