@@ -58,6 +58,8 @@ When Simon asked *"what's the problem?"*, we did what builders do: we described 
 
 And somewhere in there we heard ourselves say the thing we'd built without ever naming it: our agents needed **private, encrypted memory they could own and license** — data you're not afraid of leaking. We'd built it as plumbing for a game. Said out loud as a *problem*, it changed shape: as the agent economy arrives, every autonomous agent will need exactly that. In the last 48 hours, with the whole Superteam team helping us tighten the pitch, we tore the project down to that core and rebuilt it. That's how **Vellum Network** was born — and we went on to [place 2nd in the Colosseum Canada track](https://superteam.ca/demo-day#:~:text=Vellum).
 
+---
+
 That's our story. But a good story isn't evidence. Here's the evidence.
 
 ## What comes out the other end
@@ -140,6 +142,8 @@ A few of the companies this machine has produced — across the Foundation-era h
 
 The breadth is the point: DeFi, infrastructure, consumer, DePIN, payments. And the Canadian thread runs right through it — **TapeDrive**, a decentralized-storage team, won the Breakout Grand Championship and made the accelerator. These aren't decorations. They're proof that the weekend doesn't decay into a Monday-morning hangover. It compounds.
 
+---
+
 ## The reveal: it was about Solana all along
 
 So Colosseum is a great hackathon with a great pipeline. But pipelines need a reason to exist — and this is where the story turns one more time.
@@ -158,6 +162,8 @@ Which is the frontier Colosseum is now running straight at. In February 2026 it 
 
 So who's the protagonist of this story? Not Colosseum. Not even the ecosystem. It's **Solana** — a chain whose institutions are engineered to turn an anonymous developer anywhere in the world into a funded founder, and then get out of the way.
 
+---
+
 ## So — why is Colosseum the best hackathon?
 
 Because of everything it's the front door *to*.
@@ -174,20 +180,34 @@ That's the honest measure of a hackathon: not what you win, but who you become. 
 
 ## FAQ
 
-**What is Colosseum?**
-Colosseum runs Solana's official global hackathons and operates an accelerator and a $60M venture fund. It's best understood as one pipeline from hackathon idea to funded startup — it grew out of the Solana Foundation's own hackathon program, which it was spun out of in January 2024.
+<div class="faq">
 
-**How does the Colosseum accelerator work?**
-Teams that win a Colosseum hackathon can be invited into the accelerator. Each accepted company gets **$250,000** upfront on standardized founder-friendly terms, goes through an ~8-week program (partly in-person in San Francisco), and pitches at a demo day. Roughly two cohorts run per year, each fed by a hackathon. Winning a hackathon is the only entry path.
+<div class="faq-item">
+<div class="faq-q">What is Colosseum?</div>
+<div class="faq-a">Colosseum runs Solana's official global hackathons and operates an accelerator and a $60M venture fund. It's best understood as one pipeline from hackathon idea to funded startup — it grew out of the Solana Foundation's own hackathon program, which it was spun out of in January 2024.</div>
+</div>
 
-**Is Colosseum good for first-time / beginner builders?**
-Notably so — about half of participants had never built on a blockchain before. It's free and online to enter, and the format is designed to get newcomers shipping, with a real path to funding on the other side.
+<div class="faq-item">
+<div class="faq-q">How does the Colosseum accelerator work?</div>
+<div class="faq-a">Teams that win a Colosseum hackathon can be invited into the accelerator. Each accepted company gets <strong>$250,000</strong> upfront on standardized founder-friendly terms, goes through an ~8-week program (partly in-person in San Francisco), and pitches at a demo day. Roughly two cohorts run per year, each fed by a hackathon. Winning a hackathon is the only entry path.</div>
+</div>
 
-**How is Colosseum different from other crypto hackathons?**
-Most hackathons end when the event ends. Colosseum's hackathon is the top of a funnel that leads to an accelerator, a $250K check, and a venture fund — so a winning project has a structured path to becoming a company. It's company-shaped, not event-shaped.
+<div class="faq-item">
+<div class="faq-q">Is Colosseum good for first-time or beginner builders?</div>
+<div class="faq-a">Notably so — about half of participants had never built on a blockchain before. It's free and online to enter, and the format is designed to get newcomers shipping, with a real path to funding on the other side.</div>
+</div>
 
-**Can Canadian builders take part?**
-Yes — Colosseum is remote-first and global, and Superteam Canada actively channels Canadian builders toward it (the Toronto Startup Village is timed to the hackathon). Our own team [placed 2nd in the Colosseum Canada track](https://superteam.ca/demo-day#:~:text=Vellum).
+<div class="faq-item">
+<div class="faq-q">How is Colosseum different from other crypto hackathons?</div>
+<div class="faq-a">Most hackathons end when the event ends. Colosseum's hackathon is the top of a funnel that leads to an accelerator, a $250K check, and a venture fund — so a winning project has a structured path to becoming a company. It's company-shaped, not event-shaped.</div>
+</div>
+
+<div class="faq-item">
+<div class="faq-q">Can Canadian builders take part?</div>
+<div class="faq-a">Yes — Colosseum is remote-first and global, and Superteam Canada actively channels Canadian builders toward it (the Toronto Startup Village is timed to the hackathon). Our own team <a href="https://superteam.ca/demo-day#:~:text=Vellum">placed 2nd in the Colosseum Canada track</a>.</div>
+</div>
+
+</div>
 
 ---
 
