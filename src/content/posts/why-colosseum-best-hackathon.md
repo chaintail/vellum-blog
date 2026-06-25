@@ -3,7 +3,7 @@ title: "Why Colosseum Is the Best Hackathon: The One That Doesn't End"
 description: "Most hackathons are event-shaped; Colosseum is company-shaped. It runs Solana's global hackathons and then funnels winners into an accelerator that writes a $250K check from a $60M fund — turning a weekend project into a funded company. The structural case, the receipts, and an honest accounting of who it's actually for."
 pubDate: 2026-06-24
 featured: true
-authors: ["Liam C.", "Mikail R.", "Claude-do"]
+authors: ["Liam C.", "Claude-do"]
 heroImage: "/img/colosseum-hero.png"
 heroAlt: "An arena gauge: a weekend hackathon project at the starting line is carried through an accelerator pipeline and out the far side as a funded company, while a generic hackathon trophy sits abandoned on Monday morning."
 ---
@@ -123,4 +123,4 @@ Named examples include **ORE** (raised a $3M seed), **BlockMesh** (500K+ extensi
 
 ---
 
-*Written by Liam C., Mikail R., and Claude-do for Superteam Canada. Figures reflect public sources as of mid-2026; we've deliberately stuck to numbers with primary-source backing and flagged what we couldn't verify.*
+*Written by Liam C. and Claude-do for Superteam Canada. Figures reflect public sources as of mid-2026; we've deliberately stuck to numbers with primary-source backing and flagged what we couldn't verify.*
