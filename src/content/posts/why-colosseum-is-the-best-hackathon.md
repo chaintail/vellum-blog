@@ -10,7 +10,7 @@ heroAlt: "A watercolor Roman colosseum alive with builders streaming in at the b
 
 A mentor named Simon leaned over our table in a Toronto co-working space, looked at the game running on our Seeker phone, and smiled. "This is really cool," he said. Then: "I've got some bad news, and I don't want to discourage you."
 
-We were two longtime Ethereum developers, deep in our first weeks inside the Solana world, and we'd spent a month building a game played entirely by AI agents. We'd come north straight from the EasyA hackathon at Consensus in Miami — Solana Mobile had sponsored it, so we were carrying Seeker phones — and walked into the Superteam office for the final days of the Colosseum hackathon, where the desks were open to anyone. We were proud of what we'd made. You could probably see it on us.
+We were two longtime Ethereum developers, deep in our first weeks inside the Solana world, and we'd spent a month building a game played entirely by AI agents. We'd come north straight from the [EasyA hackathon at Consensus in Miami](https://www.coindesk.com/tech/2026/05/08/ai-agents-fueled-a-frenzy-of-startup-building-at-the-consensus-miami-easya-hackathon#:~:text=Clan%20World) — Solana Mobile had sponsored it, so we were carrying Seeker phones — and walked into the Superteam office for the final days of the Colosseum hackathon, where the desks were open to anyone. We were proud of what we'd made. You could probably see it on us.
 
 "Colosseum isn't really interested in gaming," Simon said. And before that could land as a verdict, he asked the question that took our whole project apart and rebuilt it: *"Is there a specific problem you're solving?"*
 
@@ -56,7 +56,7 @@ Which is how we ended up in that Toronto room. We didn't know it at the time, bu
 
 When Simon asked *"what's the problem?"*, we did what builders do: we described what we'd built. "That's a solution," he said. "What's the problem?" We tried again. "That's a solution too." Again, and again — gently, relentlessly — until the floor stopped feeling like a floor and started feeling like a door. Then the rest of the Superteam crew — Ben, Julian, and the others — kept pushing alongside him.
 
-And somewhere in there we heard ourselves say the thing we'd built without ever naming it: our agents needed **private, encrypted memory they could own and license** — data you're not afraid of leaking. We'd built it as plumbing for a game. Said out loud as a *problem*, it changed shape: as the agent economy arrives, every autonomous agent will need exactly that. In the last 48 hours, with the whole Superteam team helping us tighten the pitch, we tore the project down to that core and rebuilt it. That's how **Vellum Network** was born — and we went on to place 2nd in the Colosseum Canada track.
+And somewhere in there we heard ourselves say the thing we'd built without ever naming it: our agents needed **private, encrypted memory they could own and license** — data you're not afraid of leaking. We'd built it as plumbing for a game. Said out loud as a *problem*, it changed shape: as the agent economy arrives, every autonomous agent will need exactly that. In the last 48 hours, with the whole Superteam team helping us tighten the pitch, we tore the project down to that core and rebuilt it. That's how **Vellum Network** was born — and we went on to [place 2nd in the Colosseum Canada track](https://superteam.ca/demo-day#:~:text=Vellum).
 
 That's our story. But a good story isn't evidence. Here's the evidence.
 
@@ -187,7 +187,7 @@ Notably so — about half of participants had never built on a blockchain before
 Most hackathons end when the event ends. Colosseum's hackathon is the top of a funnel that leads to an accelerator, a $250K check, and a venture fund — so a winning project has a structured path to becoming a company. It's company-shaped, not event-shaped.
 
 **Can Canadian builders take part?**
-Yes — Colosseum is remote-first and global, and Superteam Canada actively channels Canadian builders toward it (the Toronto Startup Village is timed to the hackathon). Our own team placed 2nd in the Colosseum Canada track.
+Yes — Colosseum is remote-first and global, and Superteam Canada actively channels Canadian builders toward it (the Toronto Startup Village is timed to the hackathon). Our own team [placed 2nd in the Colosseum Canada track](https://superteam.ca/demo-day#:~:text=Vellum).
 
 ---
 
