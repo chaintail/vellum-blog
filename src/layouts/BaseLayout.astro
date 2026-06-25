@@ -35,7 +35,13 @@ const canonical = new URL(Astro.url.pathname, site).href;
   <body>
     <header class="site-header">
       <div class="wrap">
-        <a href="https://vellum.network" class="wordmark">Vellum</a>
+        <a href="/" class="wordmark" aria-label="Vellum Blog — home">
+          <img class="wordmark-mark" src="/img/vellum-mark-blog.png" alt="" />
+          <span class="wordmark-lockup">
+            <span class="wordmark-name">Vellum</span>
+            <span class="wordmark-sub">Blog</span>
+          </span>
+        </a>
         <span class="tagline">notes on payment rails &amp; protocol design</span>
         <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
         <nav class="nav-links" id="navLinks">
