@@ -14,6 +14,8 @@ We were two longtime Ethereum developers, deep in our first weeks inside the Sol
 
 "Colosseum isn't really interested in gaming," Simon said. And before that could land as a verdict, he asked the question that took our whole project apart and rebuilt it: *"Is there a specific problem you're solving?"*
 
+![A co-working table — a Seeker phone running a game, a "what's the problem?" sticky note, coffee and an open notebook.](/img/colosseum-seeker.png)
+
 We'll come back to that question. It matters more than the answer — and it's the reason we now think Colosseum is the best hackathon in crypto. But to explain *why*, we have to start with what most people get wrong about hackathons.
 
 ## Most hackathons end. The best one doesn't.
@@ -152,6 +154,11 @@ So Colosseum is a great hackathon with a great pipeline. But pipelines need a re
 
 Colosseum, Superteam, the accelerator, the $60M fund, Solana Ventures — these aren't independent organizations that happen to cooperate. They're the deliberate expression of a single, almost paradoxical strategy: **the Solana Foundation is trying to make itself unnecessary.** At Breakpoint 2024, its executive director literally staged a formal debate arguing that the Foundation *should be dissolved*. Its stated 10-year goal is its own redundancy. So it externalizes everything that matters: it spun out its core engineering (into Anza), its builder pipeline (into Colosseum), and its community (into Superteam) — each one an institution built to replace the institution.
 
+<figure class="quote-img">
+  <img src="/img/colosseum-recovery.png" alt="A watercolor chart plunging into a dark trough, then rising into a sunrise — Solana's crash and recovery." />
+  <figcaption>They left Solana for dead. Everyone kept building.</figcaption>
+</figure>
+
 That philosophy was forged in fire. When FTX collapsed in November 2022 and SOL fell 97%, the obituaries were already written. But the network never stopped producing blocks, and nobody left.
 
 > *"A lot of people left Solana for dead… But what never really changed was no one left and everyone kept building."* — Lily Liu, President, Solana Foundation
@@ -159,6 +166,11 @@ That philosophy was forged in fire. When FTX collapsed in November 2022 and SOL 
 > *"The fact that the network went through that shitshow and just continued running and people continued building it — it's the most decentralized thing possible."* — Anatoly Yakovenko, co-founder
 
 The mechanisms that carried Solana through the trough — the hackathons, the community, the builder pipeline — are exactly what Colosseum later institutionalized. And the reason all of it is even *possible* is the technology underneath. Anatoly Yakovenko's insight, scribbled out at 4am on "two coffees and a beer," was that time itself could be a data structure — Proof of History — which is why a Solana transaction costs about **$0.00025** instead of dollars. That sub-cent, sub-second economics is what makes a new class of software viable: real-time on-chain games, micro-subscriptions, and **software that pays software.**
+
+<figure class="quote-img">
+  <img src="/img/colosseum-beach.png" alt="A surfboard and an open laptop on a wooden crate at a beach at sunset, coffee and a beer beside them — Solana's origin." />
+  <figcaption>Time itself could be a data structure.</figcaption>
+</figure>
 
 Which is the frontier Colosseum is now running straight at. In February 2026 it ran a hackathon where **the contestants were AI agents** — humans were forbidden from writing code; the agents registered, formed teams, and shipped on their own. It's not a gimmick. It's the same machine, pointed at the next economy: the one where agents hold budgets, pay per call, and need data they own. (That, as it happens, is exactly the problem Simon grilled out of us.)
 
