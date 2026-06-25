@@ -40,6 +40,8 @@ So Colosseum built the rule directly into the machine: **the only way into the a
 
 ## The conveyor belt
 
+![The builder-to-founder machine: builders enter through a hackathon archway, ride an aqueduct of gears, and launch as funded startups on the far side.](/img/colosseum-machine.png)
+
 Once you see it, you can't unsee it. The Solana ecosystem isn't a loose constellation of organizations — it's a **deliberately engineered conveyor belt** that moves a person from "curious developer" to "funded founder," and every handoff is documented:
 
 ```
