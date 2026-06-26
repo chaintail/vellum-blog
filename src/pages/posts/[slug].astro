@@ -29,7 +29,12 @@ const articleJsonLd = {
   dateModified: (post.data.updatedDate ?? post.data.pubDate).toISOString(),
   ...(post.data.heroImage ? { image: abs(post.data.heroImage) } : {}),
   author: (post.data.authors ?? []).map((name) => ({ '@type': 'Person', name })),
-  publisher: { '@type': 'Organization', name: 'Vellum', url: 'https://vellum.network' },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Vellum',
+    url: 'https://vellum.network',
+    logo: { '@type': 'ImageObject', url: abs('/img/vellum-mark-blog.png') },
+  },
   mainEntityOfPage: pageUrl,
   // GEO: declare the entities this article is about, with authority links.
   ...(post.data.entities?.length
@@ -47,9 +52,17 @@ const faqJsonLd = post.data.faq?.length
       })),
     }
   : null;
+// SEO: breadcrumb rich result (Home › Article).
+const breadcrumbJsonLd = {
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: abs('/') },
+    { '@type': 'ListItem', position: 2, name: post.data.title, item: pageUrl },
+  ],
+};
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@graph': [articleJsonLd, ...(faqJsonLd ? [faqJsonLd] : [])],
+  '@graph': [articleJsonLd, breadcrumbJsonLd, ...(faqJsonLd ? [faqJsonLd] : [])],
 };
 ---
 <BaseLayout title={`${post.data.title} — Vellum`} description={post.data.description} image={post.data.heroImage} ogType="article" jsonLd={jsonLd}>
