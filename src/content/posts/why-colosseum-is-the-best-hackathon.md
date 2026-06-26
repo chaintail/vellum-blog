@@ -6,6 +6,26 @@ featured: true
 authors: ["Liam C.", "Claude-do"]
 heroImage: "/img/colosseum-hero-solana.png"
 heroAlt: "A watercolor Roman colosseum alive with builders streaming in at the base, while startups launch out the far side on a rising arc lit with Solana's purple-blue-green gradient."
+faq:
+  - q: "What is Colosseum?"
+    a: "Colosseum is the company that runs Solana's official global hackathons and operates an accelerator and a $60M venture fund. It's best understood as one pipeline from hackathon idea to funded startup — it grew out of the Solana Foundation's own hackathon program, which it was spun out of in January 2024."
+  - q: "How does the Colosseum accelerator work?"
+    a: "Teams that win a Colosseum hackathon can be invited into the accelerator. Each accepted company gets $250,000 upfront — a standardized SAFE with a token warrant — goes through an ~8-week program (partly in-person in San Francisco), and pitches at a demo day. Roughly two cohorts run per year, each fed by a hackathon. Winning a hackathon is the only entry path."
+  - q: "Is Colosseum good for first-time or beginner builders?"
+    a: "Notably so — by the organizers' own account, about half of participants had never built on a blockchain before. It's free and online to enter, and the format is designed to get newcomers shipping, with a real path to funding on the other side."
+  - q: "How is Colosseum different from other crypto hackathons?"
+    a: "Most hackathons end when the event ends. Colosseum's hackathon is the top of a funnel that leads to an accelerator, a $250K check, and a venture fund — so a winning project has a structured path to becoming a company. It's company-shaped, not event-shaped."
+  - q: "Can Canadian builders take part?"
+    a: "Yes — Colosseum is remote-first and global, and Superteam Canada actively channels Canadian builders toward it, with a Toronto Startup Village timed to the hackathon. Our own team placed 2nd in the Colosseum Canada track."
+entities:
+  - name: "Colosseum"
+    sameAs: "https://colosseum.com"
+  - name: "Solana"
+    sameAs: "https://solana.com"
+  - name: "Superteam"
+    sameAs: "https://superteam.fun"
+  - name: "Solana Foundation"
+    sameAs: "https://solana.org"
 ---
 
 A mentor named Simon leaned over our table in a Toronto co-working space, looked at the game running on our Seeker phone, and smiled. "This is really cool," he said. Then: "I've got some bad news, and I don't want to discourage you."
@@ -26,13 +46,15 @@ Most hackathons are **event-shaped**. You win, you get a check and a handshake, 
 
 Colosseum is **company-shaped**. The hackathon is just the qualifier.
 
-> **The fast facts** (some self-reported by Colosseum — noted): Colosseum runs Solana's global hackathons *and* an accelerator *and* a $60M venture fund. Every accelerator company gets a **$250K** standard check. **44 companies** have been funded across its first four cohorts — at roughly a **0.67% acceptance rate**. More than **80,000 builders** have come through the hackathons, and by the organizers' own account, **about half had never built on a blockchain before.**
+**In one line: Colosseum is the company that runs Solana's official global hackathons, an 8-week startup accelerator, and a $60M venture fund — a single pipeline that turns a hackathon project into a funded company.**
+
+> **The fast facts** (some self-reported by Colosseum — noted): Colosseum runs Solana's global hackathons *and* an accelerator *and* a $60M venture fund. Every accelerator company gets a **$250K** standard check — a SAFE with a token warrant. **44 companies** have been funded across its first four cohorts — at roughly a **0.67% acceptance rate**. More than **80,000 builders** have come through the hackathons, and by the organizers' own account, **about half had never built on a blockchain before.**
 
 ## Colosseum didn't come from nowhere
 
 Here's the first turn of the story. Colosseum isn't a startup that decided to run a contest. It's the *institutionalization* of the single most productive developer-onboarding engine in crypto.
 
-From 2020, a Solana Foundation growth lead named **[Matty Taylor](https://colosseum.com/about)** built the Foundation's hackathon program from scratch — eight straight online hackathons that pulled in 60,000+ builders and seeded companies like **Tensor, Squads, StepN, and Jito**. In January 2024, the Foundation did something telling: it *spun the program out* into an independent company — Colosseum — with its own accelerator and fund, explicitly modeled as "the YC for Solana."
+From 2020, a Solana Foundation growth lead named **[Matty Taylor](https://colosseum.com/about)** built the Foundation's hackathon program from scratch — eight straight online hackathons that pulled in 60,000+ builders and seeded companies like **Tensor, Squads, StepN, and Jito**. In January 2024, the Foundation did something telling: it *spun the program out* into an independent company — Colosseum, which Taylor co-founded with **Clay Robbins** and **Nate Levine** — with its own accelerator and fund, explicitly modeled as "the YC for Solana." (Its seasonal hackathons now run under names like Renaissance, Breakout, and Cypherpunk.)
 
 Taylor's pitch for why a hackathon beats a pitch deck is the cleanest articulation of the whole thesis:
 
@@ -148,6 +170,25 @@ The breadth is the point: DeFi, infrastructure, consumer, DePIN, payments. And t
 
 ---
 
+## A different kind of hackathon — not a better one
+
+To be clear, "company-shaped" isn't a knock on event-shaped hackathons; the best of them are extraordinary. The clearest example is **[ETHGlobal](https://ethglobal.com/)**, the gold standard of the Ethereum world — its in-person events are some of the best hackathons anywhere, and we say that as longtime Ethereum builders ourselves. Colosseum and ETHGlobal simply aren't built for the same thing:
+
+| | Colosseum | ETHGlobal |
+|---|---|---|
+| **Ecosystem** | Solana | Ethereum & EVM (many L2s + sponsors) |
+| **Format** | Online, global | Primarily in-person, city by city (+ online) |
+| **Typical event** | ~5-week hackathons | 36-hour weekends (+ multi-week online) |
+| **Running since** | 2020 (as Solana's hackathon program) | 2017 (ETHWaterloo) |
+| **Builders, all-time** | 80,000+ | 150,000+ community members |
+| **First-time builders** | ~50% (self-reported) | Not publicly reported |
+| **When you win** | Accelerator + $250K + a $60M fund | Sponsor-bounty prizes (funding via outside VCs) |
+| **Best for** | Solana builders | Ethereum & EVM builders |
+
+Different ecosystems, different formats, different strengths — each the best at what it does. If you're building on Ethereum, ETHGlobal is where you want to be; if you're building on Solana, it's Colosseum. This piece is about the Solana side of that map — and what makes its on-ramp unusually powerful.
+
+---
+
 ## The reveal: it was about Solana all along
 
 So Colosseum is a great hackathon with a great pipeline. But pipelines need a reason to exist — and this is where the story turns one more time.
@@ -203,12 +244,12 @@ That's the honest measure of a hackathon: not what you win, but who you become. 
 
 <div class="faq-item">
 <div class="faq-q">How does the Colosseum accelerator work?</div>
-<div class="faq-a">Teams that win a Colosseum hackathon can be invited into the accelerator. Each accepted company gets <strong>$250,000</strong> upfront on standardized founder-friendly terms, goes through an ~8-week program (partly in-person in San Francisco), and pitches at a demo day. Roughly two cohorts run per year, each fed by a hackathon. Winning a hackathon is the only entry path.</div>
+<div class="faq-a">Teams that win a Colosseum hackathon can be invited into the accelerator. Each accepted company gets <strong>$250,000</strong> upfront — a standardized SAFE with a token warrant — goes through an ~8-week program (partly in-person in San Francisco), and pitches at a demo day. Roughly two cohorts run per year, each fed by a hackathon. Winning a hackathon is the only entry path.</div>
 </div>
 
 <div class="faq-item">
 <div class="faq-q">Is Colosseum good for first-time or beginner builders?</div>
-<div class="faq-a">Notably so — about half of participants had never built on a blockchain before. It's free and online to enter, and the format is designed to get newcomers shipping, with a real path to funding on the other side.</div>
+<div class="faq-a">Notably so — by the organizers' own account, about half of participants had never built on a blockchain before. It's free and online to enter, and the format is designed to get newcomers shipping, with a real path to funding on the other side.</div>
 </div>
 
 <div class="faq-item">

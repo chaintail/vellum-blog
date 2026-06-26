@@ -20,8 +20,8 @@ const audioSrc = `/audio/${post.id}.mp3`;
 
 const jsonLdSite = Astro.site ?? new URL('https://blog.vellum.network');
 const abs = (p) => new URL(p, jsonLdSite).href;
+const pageUrl = abs(`/posts/${post.id}/`);
 const articleJsonLd = {
-  '@context': 'https://schema.org',
   '@type': 'Article',
   headline: post.data.title,
   description: post.data.description,
@@ -30,10 +30,29 @@ const articleJsonLd = {
   ...(post.data.heroImage ? { image: abs(post.data.heroImage) } : {}),
   author: (post.data.authors ?? []).map((name) => ({ '@type': 'Person', name })),
   publisher: { '@type': 'Organization', name: 'Vellum', url: 'https://vellum.network' },
-  mainEntityOfPage: abs(`/posts/${post.id}/`),
+  mainEntityOfPage: pageUrl,
+  // GEO: declare the entities this article is about, with authority links.
+  ...(post.data.entities?.length
+    ? { about: post.data.entities.map((e) => ({ '@type': 'Thing', name: e.name, sameAs: e.sameAs })) }
+    : {}),
+};
+// GEO: FAQPage schema (PAA rich results) when the post declares an faq array.
+const faqJsonLd = post.data.faq?.length
+  ? {
+      '@type': 'FAQPage',
+      mainEntity: post.data.faq.map((f) => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
+    }
+  : null;
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [articleJsonLd, ...(faqJsonLd ? [faqJsonLd] : [])],
 };
 ---
-<BaseLayout title={`${post.data.title} — Vellum`} description={post.data.description} image={post.data.heroImage} ogType="article" jsonLd={articleJsonLd}>
+<BaseLayout title={`${post.data.title} — Vellum`} description={post.data.description} image={post.data.heroImage} ogType="article" jsonLd={jsonLd}>
   <div class="reading-progress" aria-hidden="true"><span id="rpb"></span></div>
   <article>
     {post.data.heroImage && (
