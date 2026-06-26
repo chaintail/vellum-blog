@@ -6,6 +6,32 @@ featured: false
 authors: ["Liam C.", "Mikail R.", "Claude-do"]
 heroImage: "/img/c1.png"
 heroAlt: "A CAD stablecoin feeding an on-chain subscription rail — a vision: Solana authorization is live today, CADD is announced, the CAD-native rail itself is still hypothetical."
+faq:
+  - q: "What is the Solana subscriptions program?"
+    a: "The Solana subscriptions program is a standalone, audited on-chain smart contract that lets a user sign once to authorize bounded, recurring pulls from their own wallet. Amount caps, billing periods, expiry, and cancellation are all enforced by code rather than by merchant goodwill. It went live on Solana mainnet around June 3, 2026, built by Moonsong Labs with the Solana Foundation and audited by Cantina."
+  - q: "What is CADD, the Canadian-dollar stablecoin?"
+    a: "CADD is a regulated Canadian-dollar stablecoin that launched on May 4, 2026, backed by Shopify, Wealthsimple, Shakepay, National Bank of Canada, and ATB. It currently lives on Base, Ethereum, and Tempo. A Solana deployment is planned but not yet live, and no date has been announced."
+  - q: "Can you build a CAD stablecoin subscription on Solana today?"
+    a: "Not in Canadian dollars yet. The Solana subscriptions program is live and you could ship a USDC subscription on it today, but CADD is not yet on Solana — so any CAD-denominated subscription would currently bill in a USD-pegged token, leaving Canadian customers with FX exposure on a CAD-priced product. CAD-native plans wait on the CADD Solana deployment."
+  - q: "Does the Solana subscriptions program work with any token, including regulated stablecoins?"
+    a: "It works with plain SPL Token and USDC today. For Token-2022 it accepts only a restricted extension set: the SDK rejects mints configured with confidential transfer, transfer fees, permanent delegates, transfer hooks, pausability, and several others (error codes 118–124 in @solana/subscriptions). This matters for CADD because a regulated stablecoin might want a transfer hook for compliance — and a hooked mint would be rejected by the program."
+  - q: "What is the business opportunity in Canada's stablecoin subscription stack?"
+    a: "The on-chain authorization layer is live and audited, but no one operates the billing-ops layer on top of it — the service that cranks period boundaries, retries failed pulls and dunning, issues receipts from on-chain events, and wraps the SDKs in a REST API and dashboard. That 'Stripe Billing for Solana' service, built CAD-native for the home market, is the unbuilt company in the gap. Superteam Canada offers grants of up to $10,000 CAD that fit it."
+entities:
+  - name: "Solana"
+    sameAs: "https://solana.com"
+  - name: "Solana Foundation"
+    sameAs: "https://solana.org"
+  - name: "Shopify"
+    sameAs: "https://www.shopify.com"
+  - name: "Wealthsimple"
+    sameAs: "https://www.wealthsimple.com"
+  - name: "Cantina"
+    sameAs: "https://cantina.xyz"
+  - name: "Superteam Canada"
+    sameAs: "https://superteam.ca"
+  - name: "USDC"
+    sameAs: "https://www.circle.com"
 ---
 
 *A strategy memo for Canadian builders. Everything in here is either live, announced, or clearly labeled hypothetical — and the difference matters more than the hype.*
@@ -52,7 +78,7 @@ If you only remember one thing: this memo describes an opportunity, not a produc
 
 ## 3. How the primitive actually works
 
-Strip away the jargon and the mechanism is four ideas.
+**The Solana subscriptions program is a standalone, audited on-chain smart contract that lets a user sign once to authorize bounded, rule-enforced recurring pulls from their own wallet — with amount caps, periods, expiry, and cancellation all enforced by code rather than by merchant goodwill.** Strip away the jargon and the mechanism is four ideas.
 
 **One signature, bounded forever after.** The user signs a single transaction that creates an on-chain authorization: "this merchant may pull up to X of this token, on these terms." After that, the user never signs again for routine charges. The program — not the merchant's goodwill — enforces the bounds. Under the hood, a program-controlled account becomes the delegate for the user's token account, but every pull is gated by the specific authorization's rules: amount caps, period boundaries, expiry, cancellation status, and an allowlist of destination accounts.
 
@@ -149,4 +175,37 @@ All claims trace to the verified research digest for this series (compiled 2026-
 - MPP agentic-commerce spec: `github.com/tempoxyz/mpp-specs` (PR #270)
 - Superteam Canada (superteam.ca) — Toronto; grants ≤$10k CAD
 - Secondary press: MEXC, Cointrust, The Defiant coverage of the program launch
+
+---
+
+## 8. FAQ
+
+<div class="faq">
+
+<div class="faq-item">
+<div class="faq-q">What is the Solana subscriptions program?</div>
+<div class="faq-a">The Solana subscriptions program is a standalone, audited on-chain smart contract that lets a user sign once to authorize bounded, recurring pulls from their own wallet. Amount caps, billing periods, expiry, and cancellation are all enforced by code rather than by merchant goodwill. It went live on Solana mainnet around June 3, 2026, built by Moonsong Labs with the Solana Foundation and audited by Cantina.</div>
+</div>
+
+<div class="faq-item">
+<div class="faq-q">What is CADD, the Canadian-dollar stablecoin?</div>
+<div class="faq-a">CADD is a regulated Canadian-dollar stablecoin that launched on May 4, 2026, backed by Shopify, Wealthsimple, Shakepay, National Bank of Canada, and ATB. It currently lives on Base, Ethereum, and Tempo. A Solana deployment is planned but not yet live, and no date has been announced.</div>
+</div>
+
+<div class="faq-item">
+<div class="faq-q">Can you build a CAD stablecoin subscription on Solana today?</div>
+<div class="faq-a">Not in Canadian dollars yet. The Solana subscriptions program is live and you could ship a USDC subscription on it today, but CADD is not yet on Solana — so any CAD-denominated subscription would currently bill in a USD-pegged token, leaving Canadian customers with FX exposure on a CAD-priced product. CAD-native plans wait on the CADD Solana deployment.</div>
+</div>
+
+<div class="faq-item">
+<div class="faq-q">Does the Solana subscriptions program work with any token, including regulated stablecoins?</div>
+<div class="faq-a">It works with plain SPL Token and USDC today. For Token-2022 it accepts only a restricted extension set: the SDK rejects mints configured with confidential transfer, transfer fees, permanent delegates, transfer hooks, pausability, and several others (error codes 118–124 in <code>@solana/subscriptions</code>). This matters for CADD because a regulated stablecoin might want a transfer hook for compliance — and a hooked mint would be rejected by the program.</div>
+</div>
+
+<div class="faq-item">
+<div class="faq-q">What is the business opportunity in Canada's stablecoin subscription stack?</div>
+<div class="faq-a">The on-chain authorization layer is live and audited, but no one operates the billing-ops layer on top of it — the service that cranks period boundaries, retries failed pulls and dunning, issues receipts from on-chain events, and wraps the SDKs in a REST API and dashboard. That "Stripe Billing for Solana" service, built CAD-native for the home market, is the unbuilt company in the gap. Superteam Canada offers grants of up to $10,000 CAD that fit it.</div>
+</div>
+
+</div>
 

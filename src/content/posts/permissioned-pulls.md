@@ -1,14 +1,42 @@
 ---
 title: "Permissioned Pulls: Solana's New Authorization Layer for Subscriptions and Allowances"
-description: "A standalone, audited Solana program that lets a token holder grant a bounded, revocable right to pull funds — capped by amount, period, and destination. The full anatomy, a build walkthrough, and an honest accounting of what it doesn't do."
+description: "How Solana's subscriptions program works: a standalone, audited program that lets a token holder grant a bounded, revocable right to pull funds — capped by amount, period, and destination. The full anatomy, a merchant build walkthrough, and an honest accounting of what it doesn't do."
 pubDate: 2026-06-10
 featured: true
 authors: ["Mikail R.", "Liam C.", "Claude-do"]
 heroImage: "/img/a1.png"
 heroAlt: "A bounded pull payment: a wallet's metered valve releases a capped stream of tokens to a recipient, while an over-limit pull ricochets off the on-chain cap."
+faq:
+  - q: "What is Solana's subscriptions program?"
+    a: "Solana's subscriptions program is a standalone, Cantina-audited on-chain program that lets a token holder grant someone a bounded, revocable right to pull funds — capped by amount, period, and destination — without handing over a key or signing each charge. It is not a Token-2022 extension and not a protocol change; it is a userspace program built by Moonsong Labs with the Solana Foundation, deployed at address De1egAFMkMWZSN5rYXRj9CAdheBamobVNubTsi9avR44 around June 2026."
+  - q: "Is the subscriptions program a Token-2022 extension or a Solana protocol change?"
+    a: "No to both. It is a standalone Solana program with its own program ID that works with SPL Token and Token-2022 via CPI. It is unrelated to Token-2022's PermanentDelegate extension (that is a property of a mint), and it required no SIMD, validator upgrade, or consensus change — it is a normal userspace deploy."
+  - q: "Why does the program ask for a u64::MAX (unlimited) token approval?"
+    a: "The u64::MAX approval is granted to a program-controlled PDA, not a person or external key. That PDA can only sign inside the subscriptions program, and only after a twelve-step gate sequence passes. Your real spending exposure is the sum of the per-period caps in your delegations — a $5/month subscription can pull $5 a month, full stop — and cancelling or revoking closes that path. The unlimited figure exists only because SPL Token's single-delegate model is too crude to express many counterparties each individually bounded; the real limits live in the program's own state."
+  - q: "Does the subscriptions program automatically charge subscribers each month?"
+    a: "No. The program validates pulls; it never initiates them. There is no on-chain scheduler — nothing on Solana wakes up on the first of the month. Merchants run their own pull infrastructure (a cron job or keeper service) and pay roughly 5,000 lamports per pull. The program solves authorization, not execution."
+  - q: "Can the subscriptions program charge in non-USD currencies or native SOL?"
+    a: "The program is mint-agnostic, so any compatible SPL or Token-2022 mint works — including a future Canadian-dollar stablecoin once it lists on Solana. It does not support native SOL directly; the standard workaround is to wrap SOL to wSOL and subscribe with that. Token-2022 mints are supported only with a restricted extension set (confidential transfer, transfer fee, transfer hook, permanent delegate, non-transferable, pausable, and mint close authority are all rejected)."
+  - q: "How does a merchant integrate the subscriptions program?"
+    a: "The integration surface is three calls. The merchant publishes a plan once with createPlan (setting an immutable mint, amount, period, and destinations); each subscriber signs once with subscribe to authorize; then the merchant's infrastructure calls transferSubscription each billing cycle. The TypeScript SDK (@solana/subscriptions) is the paved road; there is no dedicated CLI yet."
+entities:
+  - name: "Solana"
+    sameAs: "https://solana.com"
+  - name: "Solana Foundation"
+    sameAs: "https://solana.org"
+  - name: "Moonsong Labs"
+    sameAs: "https://moonsonglabs.com"
+  - name: "Cantina"
+    sameAs: "https://cantina.xyz"
+  - name: "Anza"
+    sameAs: "https://www.anza.xyz"
+  - name: "Helius"
+    sameAs: "https://www.helius.dev"
 ---
 
 Sometime around June 3, 2026, a program quietly went live on Solana mainnet at address `De1egAFMkMWZSN5rYXRj9CAdheBamobVNubTsi9avR44`. Most of the coverage since has filed it under "recurring payments," which is the least interesting and least accurate way to describe it. What actually shipped is an **authorization layer**: a shared, audited, public primitive that lets a token holder grant someone else a *bounded right to pull funds* — capped by amount, capped by period, restricted by destination, revocable at will — without handing over a key, signing every charge, or trusting a custodian.
+
+**Solana's subscriptions program is a standalone, Cantina-audited on-chain primitive that lets a token holder grant a bounded, revocable right to pull funds — capped by amount, by period, and by destination — without surrendering a key, signing every charge, or trusting a custodian.** That is the whole idea; everything below is the anatomy of how it holds.
 
 If you want a mental model, it's the card-network pre-authorization model without the card network. When you hand a hotel your card, you're not paying; you're granting a scoped pull right that the merchant can exercise later, inside limits, with a dispute trail. This program puts that exact relationship on-chain: the subscriber signs once to authorize, the merchant pulls later, and a program — not a promise — enforces the bounds on every single pull. One limit on the analogy before leaning on it: cards carry dispute, chargeback, and legal rails behind that pre-auth, and this primitive models only the bounded-authorization half — refund policy lives a layer up, with the merchant.
 
@@ -212,6 +240,44 @@ None of these are flaws exactly — they're the shape of a v1 that chose to do o
 The proven pattern to copy is API billing. Helius — the Solana RPC/API provider — is among the program's design partners (alongside Confirmo, Dynamic, Majority, Mesh, and Meow), using it for API-tier billing: publish a plan per tier, customer subscribes once, infrastructure pulls each period, caps and cancellation enforced by the program rather than by a billing department. There is nothing region-specific about that pattern. A Canadian SaaS — your analytics startup in Toronto, your dev-tools shop in Waterloo — can implement exactly this flow today with USDC: a `createPlan` per pricing tier, a subscribe button in the dashboard, a puller process next to the existing billing cron. No payment processor in the pull path, subscriber-side cancellation that actually works, and a public audit trail of every charge via the event stream.
 
 The forward-looking piece is the currency. CADD — the regulated Canadian-dollar stablecoin backed by Shopify, Wealthsimple, Shakepay, National Bank, and ATB, launched May 2026 on Base, Ethereum, and Tempo — has Solana support planned but **not live**, and the day it lands, every mechanism in this article works unchanged with CAD-denominated plans: the program is mint-agnostic, so "subscriptions in Canadian dollars, enforced by a program" stops being a thought experiment the moment the mint exists. Until then: the rails are live, the authorization layer is audited, and the missing piece is the CAD mint itself.
+
+---
+
+## FAQ
+
+<div class="faq">
+
+<div class="faq-item">
+<div class="faq-q">What is Solana's subscriptions program?</div>
+<div class="faq-a">Solana's subscriptions program is a standalone, Cantina-audited on-chain program that lets a token holder grant someone a bounded, revocable right to pull funds — capped by amount, period, and destination — without handing over a key or signing each charge. It is not a Token-2022 extension and not a protocol change; it is a userspace program built by Moonsong Labs with the Solana Foundation, deployed at address <code>De1egAFMkMWZSN5rYXRj9CAdheBamobVNubTsi9avR44</code> around June 2026.</div>
+</div>
+
+<div class="faq-item">
+<div class="faq-q">Is the subscriptions program a Token-2022 extension or a Solana protocol change?</div>
+<div class="faq-a">No to both. It is a standalone Solana program with its own program ID that works with SPL Token and Token-2022 via CPI. It is unrelated to Token-2022's PermanentDelegate extension (that is a property of a mint), and it required no SIMD, validator upgrade, or consensus change — it is a normal userspace deploy.</div>
+</div>
+
+<div class="faq-item">
+<div class="faq-q">Why does the program ask for a u64::MAX (unlimited) token approval?</div>
+<div class="faq-a">The <code>u64::MAX</code> approval is granted to a program-controlled PDA, not a person or external key. That PDA can only sign inside the subscriptions program, and only after a twelve-step gate sequence passes. Your real spending exposure is the sum of the per-period caps in your delegations — a $5/month subscription can pull $5 a month, full stop — and cancelling or revoking closes that path. The unlimited figure exists only because SPL Token's single-delegate model is too crude to express many counterparties each individually bounded; the real limits live in the program's own state.</div>
+</div>
+
+<div class="faq-item">
+<div class="faq-q">Does the subscriptions program automatically charge subscribers each month?</div>
+<div class="faq-a">No. The program validates pulls; it never initiates them. There is no on-chain scheduler — nothing on Solana wakes up on the first of the month. Merchants run their own pull infrastructure (a cron job or keeper service) and pay roughly 5,000 lamports per pull. The program solves authorization, not execution.</div>
+</div>
+
+<div class="faq-item">
+<div class="faq-q">Can the subscriptions program charge in non-USD currencies or native SOL?</div>
+<div class="faq-a">The program is mint-agnostic, so any compatible SPL or Token-2022 mint works — including a future Canadian-dollar stablecoin once it lists on Solana. It does not support native SOL directly; the standard workaround is to wrap SOL to wSOL and subscribe with that. Token-2022 mints are supported only with a restricted extension set (confidential transfer, transfer fee, transfer hook, permanent delegate, non-transferable, pausable, and mint close authority are all rejected).</div>
+</div>
+
+<div class="faq-item">
+<div class="faq-q">How does a merchant integrate the subscriptions program?</div>
+<div class="faq-a">The integration surface is three calls. The merchant publishes a plan once with <code>createPlan</code> (setting an immutable mint, amount, period, and destinations); each subscriber signs once with <code>subscribe</code> to authorize; then the merchant's infrastructure calls <code>transferSubscription</code> each billing cycle. The TypeScript SDK (<code>@solana/subscriptions</code>) is the paved road; there is no dedicated CLI yet.</div>
+</div>
+
+</div>
 
 ---
 
