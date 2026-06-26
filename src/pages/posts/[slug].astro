@@ -26,7 +26,7 @@ const articleJsonLd = {
   headline: post.data.title,
   description: post.data.description,
   datePublished: post.data.pubDate.toISOString(),
-  dateModified: post.data.pubDate.toISOString(),
+  dateModified: (post.data.updatedDate ?? post.data.pubDate).toISOString(),
   ...(post.data.heroImage ? { image: abs(post.data.heroImage) } : {}),
   author: (post.data.authors ?? []).map((name) => ({ '@type': 'Person', name })),
   publisher: { '@type': 'Organization', name: 'Vellum', url: 'https://vellum.network' },
@@ -61,7 +61,7 @@ const jsonLd = {
       </figure>
     )}
     <header class="article-header">
-      <p class="article-meta"><span class="date">{fmtDate(post.data.pubDate)}</span> · <span class="reading-time">{readingMin} min read</span></p>
+      <p class="article-meta"><span class="date">{fmtDate(post.data.pubDate)}</span>{post.data.updatedDate && post.data.updatedDate.getTime() !== post.data.pubDate.getTime() && (<> · <span class="updated">Updated {fmtDate(post.data.updatedDate)}</span></>)} · <span class="reading-time">{readingMin} min read</span></p>
       <h1>{post.data.title}</h1>
       <p class="lede">{post.data.description}</p>
       <Byline authors={post.data.authors} />

@@ -2,6 +2,7 @@
 title: "Permissioned Pulls: Solana's New Authorization Layer for Subscriptions and Allowances"
 description: "How Solana's subscriptions program works: a standalone, audited program that lets a token holder grant a bounded, revocable right to pull funds — capped by amount, period, and destination. The full anatomy, a merchant build walkthrough, and an honest accounting of what it doesn't do."
 pubDate: 2026-06-10
+updatedDate: 2026-06-26
 featured: true
 authors: ["Mikail R.", "Liam C.", "Claude-do"]
 heroImage: "/img/a1.png"

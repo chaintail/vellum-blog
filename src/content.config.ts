@@ -7,6 +7,10 @@ const posts = defineCollection({
     title: z.string(),
     description: z.string(),
     pubDate: z.coerce.date(),
+    // SEO: real last-meaningful-edit date → feeds Article dateModified + a
+    // visible "Updated" line. Only bump on genuine content changes (faking
+    // freshness is against Google's guidelines); omit if never edited.
+    updatedDate: z.coerce.date().optional(),
     featured: z.boolean().default(false),
     authors: z.array(z.string()).default([]),
     heroImage: z.string().optional(),

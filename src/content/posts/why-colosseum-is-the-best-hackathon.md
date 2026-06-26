@@ -2,6 +2,7 @@
 title: "Why Colosseum Is the Best Hackathon — And Why That's Really a Story About Solana"
 description: "A mentor in a Toronto co-working space asked us one question that rebuilt our startup in 48 hours. That's when we understood what Colosseum actually is: not a hackathon, but the front door to the most deliberately engineered builder-to-founder machine in crypto — and underneath it, Solana itself."
 pubDate: 2026-06-25
+updatedDate: 2026-06-26
 featured: true
 authors: ["Liam C.", "Claude-do"]
 heroImage: "/img/colosseum-hero-solana.png"

@@ -2,6 +2,7 @@
 title: "Canada's Stablecoin Subscription Layer: CADD, Solana Allowances, and the CAD-Native Billing Rail Nobody Has Built Yet"
 description: "A strategy memo for Canadian builders on the collision of Solana's new subscription program and the CADD stablecoin — what's live, what's announced, what's hypothetical, and the unbuilt company in the gap."
 pubDate: 2026-06-23
+updatedDate: 2026-06-26
 featured: false
 authors: ["Liam C.", "Mikail R.", "Claude-do"]
 heroImage: "/img/c1.png"

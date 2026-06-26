@@ -2,6 +2,7 @@
 title: "MapleAgent: Give AI Agents a Budget, Not Your Wallet"
 description: "We built a demo on Solana's new native subscriptions & allowances — a capped, revocable budget an AI agent spends on its own, with revocation enforced by the chain itself."
 pubDate: 2026-06-23
+updatedDate: 2026-06-26
 featured: true
 authors: ["Liam C.", "Claude-do"]
 faq:
