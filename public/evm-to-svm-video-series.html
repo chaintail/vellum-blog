@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="only light">
+<title>Solana for Ethereum Developers · Vellum Network · Grant Proposal Draft v3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme:only light;
+  --vellum:#f7f4ee;
+  --vellum-deep:#efeadf;
+  --ink:#17142a;
+  --ink-soft:#4c4761;
+  --sol-purple:#9945FF;
+  --sol-green:#14F195;
+  --sol-green-deep:#0aa06b;
+  --sol-purple-deep:#6d2fc4;
+  --grad:linear-gradient(93deg,#9945FF 0%,#14F195 100%);
+  --line:#ddd6c8;
+  --card:#fcfaf5;
+  --dark:#120d24;
+  --mono:'IBM Plex Mono',ui-monospace,monospace;
+  --body:'Inter',system-ui,sans-serif;
+  --display:'Fraunces',serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;background:#f7f4ee}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{
+  background:#f7f4ee !important;
+  color:#17142a;
+  font-family:var(--body);
+  font-size:16px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  border-top:5px solid;
+  border-image:var(--grad) 1;
+}
+.wrap{max-width:760px;margin:0 auto;padding:0 22px}
+.paper{background:#f7f4ee;color:#17142a}
+@media(prefers-color-scheme:dark){
+  html,body,.paper{background:#f7f4ee !important;color:#17142a !important}
+  .hero{background:#120d24 !important}
+}
+.grad-text{
+  background:var(--grad);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+}
+
+/* ---------- header (dark hero band) ---------- */
+.hero{background:var(--dark);color:var(--vellum)}
+header{padding:52px 0 44px}
+.brand{
+  display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;
+  font-family:var(--mono);font-size:13px;color:#8f88ab;
+  margin-bottom:28px;
+}
+.brand strong{color:var(--vellum);font-weight:500;letter-spacing:.04em}
+.status{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--mono);font-size:12px;
+  color:#c8f5e2;
+  border:1px solid transparent;border-radius:100px;padding:5px 14px;margin-bottom:26px;
+  background:
+    linear-gradient(var(--dark),var(--dark)) padding-box,
+    var(--grad) border-box;
+}
+.status::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--grad)}
+h1{
+  font-family:var(--display);font-weight:500;
+  font-size:clamp(34px,6.5vw,52px);line-height:1.06;
+  letter-spacing:-0.015em;margin-bottom:20px;color:var(--vellum);
+}
+.lede{font-size:17px;color:#b9b3cc;max-width:56ch;margin-bottom:34px}
+.statrow{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#2c2450;border:1px solid #2c2450;border-top:3px solid;border-image:var(--grad) 1}
+.stat{background:#1b1533;padding:16px 14px}
+.stat b{display:block;font-family:var(--display);font-size:26px;font-weight:500;line-height:1.1;color:var(--vellum)}
+.stat span{font-family:var(--mono);font-size:11px;color:#8f88ab;text-transform:uppercase;letter-spacing:.06em}
+@media(max-width:560px){.statrow{grid-template-columns:repeat(2,1fr)}}
+
+/* ---------- intro + toc ---------- */
+.intro{padding:36px 0;border-bottom:1px solid var(--line)}
+.intro p{color:var(--ink-soft);max-width:64ch;margin-bottom:22px}
+.intro p strong{color:var(--ink);font-weight:600}
+.toc{background:var(--card);border:1px solid var(--line);padding:6px 18px}
+.toc a{
+  display:flex;gap:14px;align-items:baseline;
+  padding:12px 0;border-bottom:1px dashed var(--line);
+  text-decoration:none;color:var(--ink);font-size:15px;font-weight:500;
+}
+.toc a:last-child{border-bottom:none}
+.toc a:hover .toc-title{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.toc a:focus-visible{outline:2px solid var(--sol-purple);outline-offset:2px}
+.toc .tn{font-family:var(--mono);font-size:12px;color:var(--sol-purple-deep);flex-shrink:0;width:26px}
+.toc .toc-note{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--ink-soft);font-weight:400;text-align:right}
+@media(max-width:520px){.toc .toc-note{display:none}}
+
+/* ---------- sections ---------- */
+section{padding:44px 0;border-bottom:1px solid var(--line);scroll-margin-top:16px}
+.eyebrow{
+  font-family:var(--mono);font-size:12px;letter-spacing:.1em;
+  text-transform:uppercase;margin-bottom:14px;
+  background:var(--grad);-webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+  display:inline-block;font-weight:500;
+}
+h2{font-family:var(--display);font-weight:500;font-size:clamp(24px,4.5vw,32px);letter-spacing:-0.01em;margin-bottom:16px;line-height:1.15;display:block}
+section p{color:var(--ink-soft);max-width:62ch;margin-bottom:14px}
+section p strong{color:var(--ink);font-weight:600}
+.callout{
+  background:var(--card);border:1px solid var(--line);
+  border-left:3px solid;border-image:linear-gradient(180deg,#9945FF,#14F195) 1;
+  padding:16px 18px;margin:20px 0;max-width:62ch;
+}
+.callout p{margin-bottom:0;font-size:15px}
+
+/* ---------- curriculum ---------- */
+.theme{border:1px solid var(--line);background:var(--card);margin-bottom:12px}
+.theme summary{
+  list-style:none;cursor:pointer;padding:16px 18px;
+  display:flex;align-items:baseline;gap:14px;
+}
+.theme summary::-webkit-details-marker{display:none}
+.theme summary:hover{background:var(--vellum-deep)}
+.theme summary:focus-visible{outline:2px solid var(--sol-purple);outline-offset:-2px}
+.pnum{font-family:var(--mono);font-size:12px;flex-shrink:0;padding-top:3px;color:var(--sol-purple-deep);font-weight:500}
+.tname{font-family:var(--display);font-size:19px;font-weight:500;flex:1;line-height:1.25}
+.tcount{font-family:var(--mono);font-size:12px;color:var(--ink-soft);flex-shrink:0;padding-top:3px}
+.theme summary .chev{font-family:var(--mono);color:var(--ink-soft);flex-shrink:0;transition:transform .15s}
+.theme[open] summary .chev{transform:rotate(90deg)}
+.tgoal{
+  padding:0 18px 14px;font-size:14px;color:var(--ink-soft);
+  border-bottom:1px dashed var(--line);margin-bottom:4px;
+}
+.tgoal b{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--sol-green-deep);font-weight:500}
+.lesson{padding:14px 18px;border-bottom:1px dashed var(--line)}
+.lesson:last-child{border-bottom:none}
+.lhead{display:flex;gap:12px;align-items:baseline;margin-bottom:6px}
+.lnum{font-family:var(--mono);font-size:12px;color:var(--ink-soft);flex-shrink:0}
+.lhead h4{font-size:15px;font-weight:600;line-height:1.35}
+.lesson p{font-size:14px;margin:0 0 8px 30px;max-width:none}
+.pts{list-style:none;margin:0 0 10px 30px}
+.pts li{
+  font-size:13.5px;color:var(--ink-soft);line-height:1.55;
+  position:relative;padding-left:17px;margin-bottom:5px;
+}
+.pts li::before{
+  content:'›';position:absolute;left:0;top:0;
+  font-family:var(--mono);font-weight:500;
+  background:var(--grad);-webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.code{
+  font-family:var(--mono);font-size:.88em;
+  color:var(--sol-purple-deep);
+  background:rgba(153,69,255,.07);
+  border:1px solid rgba(153,69,255,.14);
+  padding:0 5px;border-radius:3px;white-space:nowrap;
+}
+.code.g{color:var(--sol-green-deep);background:rgba(20,241,149,.08);border-color:rgba(20,241,149,.2)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-left:30px}
+.chip{
+  font-family:var(--mono);font-size:11px;color:var(--ink-soft);
+  border:1px solid var(--line);background:var(--vellum);
+  border-radius:3px;padding:2px 8px;
+}
+.phase-mark{
+  font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;
+  border-radius:3px;padding:2px 8px;flex-shrink:0;align-self:center;font-weight:500;
+}
+.p1{background:var(--grad);color:#fff}
+.p2{
+  border:1px solid transparent;color:var(--sol-purple-deep);
+  background:
+    linear-gradient(var(--card),var(--card)) padding-box,
+    var(--grad) border-box;
+}
+
+/* ---------- production / effort ---------- */
+.steps{counter-reset:step;margin:22px 0}
+.step{display:flex;gap:16px;padding:14px 0;border-bottom:1px dashed var(--line)}
+.step:last-child{border-bottom:none}
+.step::before{
+  counter-increment:step;content:counter(step,decimal-leading-zero);
+  font-family:var(--mono);font-size:13px;flex-shrink:0;padding-top:2px;
+  background:var(--grad);-webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;font-weight:500;
+}
+.step div h4{font-size:15px;font-weight:600;margin-bottom:2px}
+.step div p{font-size:14px;margin:0}
+.tiers{display:grid;gap:12px;margin-top:22px}
+.tier{background:var(--card);border:1px solid var(--line);padding:16px 18px}
+.tier .trow{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:4px}
+.tier h4{font-size:15px;font-weight:600}
+.tier .hrs{font-family:var(--mono);font-size:13px;color:var(--sol-purple-deep);white-space:nowrap;font-weight:500}
+.tier p{font-size:13.5px;margin:0 0 10px}
+.bar{display:flex;height:8px;border-radius:2px;overflow:hidden;margin-bottom:6px}
+.bar i{display:block;height:100%}
+.b-prep{background:var(--sol-purple)}
+.b-rec{background:var(--sol-green)}
+.b-edit{background:#cfc7b0}
+.legend{font-family:var(--mono);font-size:11px;color:var(--ink-soft)}
+.legend b{font-weight:500}
+.legend .dot{display:inline-block;width:8px;height:8px;border-radius:2px;margin:0 4px 0 10px;vertical-align:baseline}
+.legend .dot:first-child{margin-left:0}
+
+/* ---------- grant scope ---------- */
+.ask{
+  background:var(--dark);color:var(--vellum);
+  padding:26px 22px;margin:22px 0;
+  border-top:4px solid;border-image:var(--grad) 1;
+}
+.ask .eyebrow{margin-bottom:8px}
+.ask h3{font-family:var(--display);font-weight:500;font-size:clamp(22px,4vw,28px);line-height:1.2;margin-bottom:8px}
+.ask h3 .grad-text{font-weight:600}
+.ask p{color:#b9b3cc;font-size:14.5px;margin:0;max-width:60ch}
+.ask b{color:var(--vellum)}
+.milestones{margin-top:20px}
+.deliv{background:var(--card);border:1px solid var(--line);padding:16px 18px;margin-top:20px}
+.deliv-label{
+  font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:500;
+  margin-bottom:10px;
+  background:var(--grad);-webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;display:inline-block;
+}
+.deliv-list{list-style:none;margin:0;columns:2;column-gap:24px}
+.deliv-list li{
+  font-size:14px;color:var(--ink-soft);line-height:1.5;
+  position:relative;padding-left:20px;margin-bottom:7px;break-inside:avoid;
+}
+.deliv-list li::before{
+  content:'✓';position:absolute;left:0;top:0;
+  font-family:var(--mono);font-weight:500;color:var(--sol-green-deep);
+}
+@media(max-width:560px){.deliv-list{columns:1}}
+.ms{display:flex;gap:14px;padding:14px 0;border-bottom:1px dashed var(--line)}
+.ms:last-child{border-bottom:none}
+.ms .mtag{
+  font-family:var(--mono);font-size:11px;color:var(--sol-purple-deep);font-weight:500;
+  border:1px solid transparent;border-radius:3px;padding:2px 8px;
+  background:
+    linear-gradient(var(--vellum),var(--vellum)) padding-box,
+    var(--grad) border-box;
+  align-self:flex-start;margin-top:2px;white-space:nowrap;
+}
+.ms div h4{font-size:15px;font-weight:600;margin-bottom:2px}
+.ms div h4 span{font-family:var(--mono);font-size:12px;font-weight:400;color:var(--ink-soft)}
+.ms div p{font-size:14px;margin:0}
+
+/* ---------- open questions ---------- */
+.q{
+  background:var(--card);border:1px solid var(--line);
+  padding:16px 18px;margin-bottom:10px;display:flex;gap:14px;
+}
+.q .qn{
+  font-family:var(--mono);font-size:13px;flex-shrink:0;padding-top:2px;font-weight:500;
+  background:var(--grad);-webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.q div h4{font-size:15px;font-weight:600;margin-bottom:3px}
+.q div p{font-size:14px;margin:0;max-width:none}
+
+footer{padding:36px 0 56px}
+footer .rule{height:3px;background:var(--grad);margin-bottom:24px;border-radius:2px}
+.footer-row{display:flex;align-items:flex-end;gap:16px}
+.footer-logo{display:block;height:34px;width:auto;flex-shrink:0}
+footer p{font-family:var(--mono);font-size:12px;color:var(--ink-soft);line-height:1.8}
+footer b{color:var(--ink);font-weight:500}
+</style>
+</head>
+<body>
+
+<div class="hero">
+<div class="wrap">
+<header>
+  <div class="status">draft v3 for mentor feedback · not the final application</div>
+  <h1><span class="grad-text">Solana</span> for Ethereum Developers</h1>
+  <p class="lede">A 49-lesson micro-course and 50-part short-video series that rebuilds the EVM developer's mental model for Solana: accounts, programs, PDAs, transaction tracing, protocol architecture, and exploit analysis. Taught by two experienced Ethereum devs learning Solana in public.</p>
+  <div class="statrow">
+    <div class="stat"><b>10</b><span>themes</span></div>
+    <div class="stat"><b>49</b><span>micro-lessons</span></div>
+    <div class="stat"><b>~50</b><span>short videos</span></div>
+    <div class="stat"><b>3–5</b><span>slides / lesson</span></div>
+  </div>
+</header>
+</div>
+</div>
+
+<main class="paper">
+<div class="wrap">
+
+<div class="intro">
+  <p style="font-style:italic"><strong>What this document is:</strong> a pre-application draft we're sharing with Superteam Canada mentors ahead of the Solana Foundation Canada Grants. It lays out the full course vision, a proposed Phase 1 scope sized to the grant, and five open questions where we genuinely want your read before we write the formal application. Skim the sections below, expand whatever interests you, and tear apart whatever deserves it.</p>
+  <nav class="toc" aria-label="Table of contents">
+    <a href="#why"><span class="tn">01</span><span class="toc-title">Why this course</span><span class="toc-note">the gap we're filling</span></a>
+    <a href="#curriculum"><span class="tn">02</span><span class="toc-title">Curriculum map</span><span class="toc-note">10 themes · 49 lessons</span></a>
+    <a href="#production"><span class="tn">03</span><span class="toc-title">Production model</span><span class="toc-note">one lesson, five artifacts</span></a>
+    <a href="#effort"><span class="tn">04</span><span class="toc-title">Effort model</span><span class="toc-note">where the hours go</span></a>
+    <a href="#scope"><span class="tn">05</span><span class="toc-title">Proposed grant scope</span><span class="toc-note">Phase 1 · $10k USDG</span></a>
+    <a href="#team"><span class="tn">06</span><span class="toc-title">Who we are</span><span class="toc-note">brief, since you know us</span></a>
+    <a href="#questions"><span class="tn">07</span><span class="toc-title">Open questions</span><span class="toc-note">where we want your read</span></a>
+  </nav>
+</div>
+
+<section id="why">
+  <div class="eyebrow">why this course</div>
+  <h2>The gap: everyone teaches building. Nobody teaches reading, decoding, and tracing.</h2>
+  <p>Existing Solana education (Rareskills, School of Solana, official bootcamps) is aimed at writing your first program. Almost nothing teaches developers to <strong>read Solana</strong>: decode raw transactions, trace CPIs and token flows, audit account validation, reverse engineer unknown programs. That literacy is exactly what an experienced EVM developer needs to become dangerous on Solana quickly, and it's what this course delivers.</p>
+  <p>Instead of generic blockchain basics, every lesson isolates one Solana concept and compares it against the closest Ethereum mental model. One idea at a time: small enough to be a slide sequence, a livestream segment, and a short-form video.</p>
+  <div class="callout">
+    <p><strong>The format is the distribution hook.</strong> This curriculum is the actual roadmap we designed to train ourselves. The series is two EVM-native devs genuinely learning Solana on camera, and the real "wait, token balances don't live in the contract?" moments are relatable to exactly the audience Solana wants to convert.</p>
+  </div>
+</section>
+
+<section id="curriculum">
+  <div class="eyebrow">curriculum map · full course vision</div>
+  <h2>Ten themes, foundations to forensics</h2>
+  <p>The full roadmap below is the complete course vision. Themes marked <span class="phase-mark p1" style="display:inline-flex">Phase 1</span> are the proposed scope for this grant. Themes marked <span class="phase-mark p2" style="display:inline-flex">Phase 2</span> are the follow-on we'd apply for after shipping Phase 1. Tap a theme to expand its lessons. Sequencing stays flexible as live teaching reveals better ordering.</p>
+
+  <details class="theme">
+    <summary><span class="pnum">T1</span><span class="tname">Mental model reset</span><span class="phase-mark p1">Phase 1</span><span class="tcount">5 lessons</span><span class="chev">›</span></summary>
+    <div class="tgoal"><b>Goal</b> · Stop thinking "contract with storage." Start thinking in accounts, programs, instructions, and explicit account access.</div>
+    <div class="lesson">
+      <div class="lhead"><span class="lnum">01</span><h4>What a Solana address is</h4></div>
+      <p>Solana addresses as base58-encoded 32-byte public keys, then immediately break the Ethereum habit of reading an address as "EOA vs contract."</p>
+      <ul class="pts">
+        <li>Compare <span class="code">0x...</span> Ethereum addresses with Solana <span class="code">base58</span> public keys</li>
+        <li>Show that wallets, programs, token mints, token accounts, and PDAs can all look like the same "address" shape</li>
+        <li>Introduce the habit: fetch account metadata before assuming what an address is</li>
+      </ul>
+      <div class="chips"><span class="chip">base58</span><span class="chip">public keys</span><span class="chip">EOA reset</span></div>
+    </div>
+    <div class="lesson">
+      <div class="lhead"><span class="lnum">02</span><h4>SOL, lamports, and balances</h4></div>
+      <p>SOL as the native asset and lamports as the smallest unit, connected to fees, rent exemption, and account creation.</p>
+      <ul class="pts">
+        <li>Define <span class="code">1 SOL = 1,000,000,000 lamports</span></li>
+        <li>Explain why non-wallet state accounts hold SOL for rent exemption</li>
+        <li>Contrast Ethereum gas payment with Solana's smaller base fees and account-funding requirements</li>
+      </ul>
+      <div class="chips"><span class="chip">lamports</span><span class="chip">fees</span><span class="chip">rent exemption</span></div>
+    </div>
+    <div class="lesson">
+      <div class="lhead"><span class="lnum">03</span><h4>What a transaction is on Solana</h4></div>
+      <p>A Solana transaction as a signed message containing one or more instructions, a recent blockhash, and an explicit account list.</p>
+      <ul class="pts">
+        <li>Explain signatures, signer ordering, message headers, account keys, and <span class="code">recentBlockhash</span> expiration</li>
+        <li>Compare a Solana multi-instruction transaction to an Ethereum transaction that usually targets one contract call</li>
+        <li>Preview why account lists are the key to transaction decoding later</li>
+      </ul>
+      <div class="chips"><span class="chip">signatures</span><span class="chip">recent blockhash</span><span class="chip">instructions</span></div>
+    </div>
+    <div class="lesson">
+      <div class="lhead"><span class="lnum">04</span><h4>Programs vs accounts</h4></div>
+      <p>The most important architectural shift: program code and state do not live together the way contract code and storage do on Ethereum.</p>
+      <ul class="pts">
+        <li>Programs are executable accounts</li>
+        <li>State lives in separate accounts owned by a program</li>
+        <li>Protocol design becomes: which state accounts exist, who owns them, and which instructions can mutate them</li>
+      </ul>
+      <div class="chips"><span class="chip">programs</span><span class="chip">state accounts</span><span class="chip">ownership</span></div>
+    </div>
+    <div class="lesson">
+      <div class="lhead"><span class="lnum">05</span><h4>Read-only vs writable accounts</h4></div>
+      <p>Why every instruction declares the accounts it reads and writes, and how this drives Solana's parallel execution model.</p>
+      <ul class="pts">
+        <li>Define account metas: <span class="code">signer</span>/non-signer and <span class="code">writable</span>/read-only</li>
+        <li>Show why writable accounts create locks and can bottleneck throughput</li>
+        <li>Introduce the design mantra: avoid unnecessary hot writable accounts</li>
+      </ul>
+      <div class="chips"><span class="chip">account metas</span><span class="chip">write locks</span><span class="chip">parallelism</span></div>
+    </div>
+  </details>
+
+  <details class="theme">
+    <summary><span class="pnum">T2</span><span class="tname">Transactions and execution</span><span class="phase-mark p1">Phase 1</span><span class="tcount">5 lessons</span><span class="chev">›</span></summary>
+    <div class="tgoal"><b>Goal</b> · Understand what actually runs when a transaction lands, and why execution feels different from EVM message calls.</div>
+    <div class="lesson">
+      <div class="lhead"><span class="lnum">06</span><h4>Instructions</h4></div>
+      <p>The basic execution unit: a program id, account metadata, and opaque instruction data bytes.</p>
+      <ul class="pts">
+        <li>Map <span class="code">programId</span>, <span class="code">accounts</span>, and <span class="code">data</span> to what an explorer or RPC response shows</li>
+        <li>Explain why instruction data is meaningless until decoded with a schema or IDL</li>
+        <li>Connect instructions to later topics like Anchor discriminators and compiled instruction indexes</li>
+      </ul>
+      <div class="chips"><span class="chip">program id</span><span class="chip">instruction data</span><span class="chip">account metas</span></div>
+    </div>
+    <div class="lesson">
+      <div class="lhead"><span class="lnum">07</span><h4>Cross-program invocation (CPI)</h4></div>
+      <p>Solana's version of one program calling another, but with explicit accounts and privilege rules.</p>
+      <ul class="pts">
+        <li>Compare CPI to an EVM external call, then highlight where the analogy breaks</li>
+        <li>Show how CPIs appear as inner instructions in transaction traces</li>
+        <li>Explain signer/writable privilege propagation and why CPI is central to security review</li>
+      </ul>
+      <div class="chips"><span class="chip">CPI</span><span class="chip">inner instructions</span><span class="chip">privileges</span></div>
+    </div>
+    <div class="lesson">
+      <div class="lhead"><span class="lnum">08</span><h4>Fees, compute units, and priority fees</h4></div>
+      <p>Compute units vs EVM gas, compared carefully without pretending they are the same economic model.</p>
+      <ul class="pts">
+        <li>Introduce compute unit limits and the <span class="code g">ComputeBudget</span> program</li>
+        <li>Explain prioritization fees and why compute budget instructions often appear at the start of transactions</li>
+        <li>Discuss how simulation helps estimate compute before sending a transaction</li>
+      </ul>
+      <div class="chips"><span class="chip">compute units</span><span class="chip">priority fees</span><span class="chip">ComputeBudget</span></div>
+    </div>
+    <div class="lesson">
+      <div class="lhead"><span class="lnum">09</span><h4>Atomicity and rollback behavior</h4></div>
+      <p>Transaction-level atomicity: if one instruction fails, the whole transaction fails and state changes roll back.</p>
+      <ul class="pts">
+        <li>Show how multi-instruction transactions either fully commit or fully fail</li>
+        <li>Explain what logs can still reveal after a failed transaction</li>
+        <li>Compare this to Ethereum revert behavior while noting Solana's explicit account model</li>
+      </ul>
+      <div class="chips"><span class="chip">atomicity</span><span class="chip">rollback</span><span class="chip">failed tx</span></div>
+    </div>
+    <div class="lesson">
+      <div class="lhead"><span class="lnum">10</span><h4>Program logs and return-style debugging</h4></div>
+      <p>Logs, simulation output, and custom errors as the first tools for understanding what happened inside a transaction.</p>
+      <ul class="pts">
+        <li>Recognize <span class="code">Program log:</span>, Anchor errors, and custom program error codes</li>
+        <li>Use logs to map execution order and CPI boundaries</li>
+        <li>Preview a practical trace workflow: simulate, inspect logs, decode accounts, then map to code</li>
+      </ul>
+      <div class="chips"><span class="chip">logs</span><span class="chip">simulation</span><span class="chip">errors</span></div>
+    </div>
+  </details>
+
+  <details class="theme">
+    <summary><span class="pnum">T3</span><span class="tname">State and data layout</span><span class="phase-mark p1">Phase 1</span><span class="tcount">5 lessons</span><span class="chev">›</span></summary>
+    <div class="tgoal"><b>Goal</b> · Learn how storage works when state is separate from executable code and every account is an owned byte container.</div>
+    <div class="lesson">
+      <div class="lhead"><span class="lnum">11</span><h4>Account data</h4></div>
+      <p>The account object itself: lamports, owner, executable flag, data bytes, and metadata.</p>
+      <ul class="pts">
+        <li>Explain that account data is just bytes until decoded</li>
+        <li>Show why <span class="code">owner</span> determines which program may modify account data</li>
+        <li>Introduce account size as an architectural and security consideration</li>
+      </ul>
+      <div class="chips"><span class="chip">owner</span><span class="chip">data bytes</span><span class="chip">metadata</span></div>
+    </div>
+    <div class="lesson">
+      <div class="lhead"><span class="lnum">12</span><h4>Rent and account lifecycle</h4></div>
+      <p>Rent exemption, account creation costs, account closure, and why lifecycle bugs are common in Solana programs.</p>
+      <ul class="pts">
+        <li>Describe rent-exempt minimum balances and reclaiming lamports on close</li>
+        <li>Show how accounts move through <span class="code">create → initialize → use → close</span></li>
+        <li>Preview reinitialization and stale-data risks</li>
+      </ul>
+      <div class="chips"><span class="chip">rent</span><span class="chip">close account</span><span class="chip">lifecycle</span></div>
+    </div>
+    <div class="lesson">
+      <div class="lhead"><span class="lnum">13</span><h4>Program Derived Addresses (PDAs)</h4></div>
+      <p>PDAs as deterministic program-controlled addresses created from seeds and a bump, with no private key.</p>
+      <ul class="pts">
+        <li>Explain <span class="code">seeds</span>, <span class="code">bump</span>, and "off-curve" addresses</li>
+        <li>Show how a program can sign for a PDA during CPI</li>
+        <li>Compare PDA authorities to Ethereum contract-owned assets, while noting the account model difference</li>
+      </ul>
+      <div class="chips"><span class="chip">PDA</span><span class="chip">seeds</span><span class="chip">bump</span></div>
+    </div>
+    <div class="lesson">
+      <div class="lhead"><span class="lnum">14</span><h4>Associated token accounts</h4></div>
+      <p>Why token balances live in token accounts instead of inside wallets or token contracts.</p>
+      <ul class="pts">
+        <li>Define the <span class="code">wallet + mint → ATA</span> relationship</li>
+        <li>Show why many transactions first create an ATA and then transfer tokens</li>
+        <li>Contrast this with ERC-20 balances stored inside the token contract</li>
+      </ul>
+      <div class="chips"><span class="chip">ATA</span><span class="chip">token accounts</span><span class="chip">wallet/mint</span></div>
+    </div>
+    <div class="lesson">
+      <div class="lhead"><span class="lnum">15</span><h4>Serialization: Borsh, Anchor, and manual bytes</h4></div>
+      <p>How account data and instruction data are encoded, and why decoding requires schemas.</p>
+      <ul class="pts">
+        <li>Introduce <span class="code">Borsh</span> as a common serialization format</li>
+        <li>Explain Anchor's 8-byte account and instruction discriminators</li>
+        <li>Preview manual decoding when no Anchor IDL is available</li>
+      </ul>
+      <div class="chips"><span class="chip">Borsh</span><span class="chip">discriminators</span><span class="chip">manual decoding</span></div>
+    </div>
+  </details>
+
+  <details class="theme">
+    <summary><span class="pnum">T4</span><span class="tname">Tokens and standard programs</span><span class="phase-mark p1">Phase 1</span><span class="tcount">5 lessons</span><span class="chev">›</span></summary>
+    <div class="tgoal"><b>Goal</b> · Recognize the system programs that appear in almost every useful trace and protocol design.</div>
+    <div class="lesson">
+      <div class="lhead"><span class="lnum">16</span><h4>System Program</h4></div>
+      <p>The native program that underpins account creation, SOL transfers, allocation, and ownership assignment.</p>
+      <ul class="pts">
+        <li>Recognize <span class="code g">1111...1111</span> as the System Program</li>
+        <li>Explain create account, transfer, allocate, assign, and nonce-related operations at a high level</li>
+        <li>Show why System Program instructions appear in many "normal" app transactions</li>
+      </ul>
+      <div class="chips"><span class="chip">System Program</span><span class="chip">create account</span><span class="chip">SOL transfer</span></div>
+    </div>
+    <div class="lesson">
+      <div class="lhead"><span class="lnum">17</span><h4>SPL Token Program</h4></div>
+      <p>The SPL Token model: mints, token accounts, authorities, decimals, transfers, delegates, and approvals.</p>
+      <ul class="pts">
+        <li>Separate mint account from token account from owner/authority</li>
+        <li>Compare SPL Token to ERC-20 without assuming token balances live in contract storage</li>
+        <li>Trace a basic token transfer from account metadata and balance changes</li>
+      </ul>
+      <div class="chips"><span class="chip">SPL Token</span><span class="chip">mint</span><span class="chip">token account</span></div>
+    </div>
+    <div class="lesson">
+      <div class="lhead"><span class="lnum">18</span><h4>Token-2022</h4></div>
+      <p>The newer token program with extensions that can change integration and security assumptions.</p>
+      <ul class="pts">
+        <li>Discuss extensions: transfer fees, metadata, confidential-transfer-related features, and transfer hooks</li>
+        <li>Explain why protocols must check which token program and extensions they support</li>
+        <li>Frame Token-2022 as a richer token surface, not merely "SPL Token v2"</li>
+      </ul>
+      <div class="chips"><span class="chip">Token-2022</span><span class="chip">extensions</span><span class="chip">transfer hooks</span></div>
+    </div>
+    <div class="lesson">
+      <div class="lhead"><span class="lnum">19</span><h4>Associated Token Program</h4></div>
+      <p>The standard program that creates deterministic associated token accounts for wallet/mint pairs.</p>
+      <ul class="pts">
+        <li>Show why ATA creation is often bundled with app actions</li>
+        <li>Explain idempotent ATA creation and why it improves UX</li>
+        <li>Connect ATA derivation to PDAs and standard token flows</li>
+      </ul>
+      <div class="chips"><span class="chip">ATA program</span><span class="chip">idempotent create</span><span class="chip">deterministic</span></div>
+    </div>
+    <div class="lesson">
+      <div class="lhead"><span class="lnum">20</span><h4>Memo, ComputeBudget, and Address Lookup Tables</h4></div>
+      <p>Common support programs that appear in traces and can distract new readers if they don't recognize them.</p>
+      <ul class="pts">
+        <li>Use <span class="code g">Memo</span> for attached text or metadata</li>
+        <li>Use <span class="code g">ComputeBudget</span> for compute limits and priority fees</li>
+        <li>Use Address Lookup Tables to fit larger account sets into versioned transactions</li>
+      </ul>
+      <div class="chips"><span class="chip">Memo</span><span class="chip">ComputeBudget</span><span class="chip">ALT</span></div>
+    </div>
+  </details>
+
+  <details class="theme">
+    <summary><span class="pnum">T5</span><span class="tname">Reading and writing programs</span><span class="phase-mark p1">Phase 1</span><span class="tcount">5 lessons</span><span class="chev">›</span></summary>
+    <div class="tgoal"><b>Goal</b> · Build enough Rust and Anchor literacy to read real smart contract code and understand what the macros produce.</div>
+    <div class="lesson">
+      <div class="lhead"><span class="lnum">21</span><h4>Rust program structure</h4></div>
+      <p>Native Solana Rust program shape before introducing Anchor abstractions.</p>
+      <ul class="pts">
+        <li>Identify <span class="code">entrypoint</span>, instruction dispatch, processor functions, account iteration, and error returns</li>
+        <li>Show where deserialization, validation, mutation, and serialization happen</li>
+        <li>Give Ethereum developers a rough map from Solidity functions to Solana instruction handlers</li>
+      </ul>
+      <div class="chips"><span class="chip">Rust</span><span class="chip">entrypoint</span><span class="chip">processor</span></div>
+    </div>
+    <div class="lesson">
+      <div class="lhead"><span class="lnum">22</span><h4>Native Solana Rust vs Anchor</h4></div>
+      <p>Raw Solana SDK programs compared with Anchor's macro-driven framework and generated client tooling.</p>
+      <ul class="pts">
+        <li>Explain Anchor's benefits: constraints, IDL, account wrappers, and client generation</li>
+        <li>Explain the tradeoff: macros hide details you still need for audits and tracing</li>
+        <li>Give a practical reading strategy: understand Anchor syntax, then map it back to raw accounts</li>
+      </ul>
+      <div class="chips"><span class="chip">Anchor</span><span class="chip">native Rust</span><span class="chip">IDL</span></div>
+    </div>
+    <div class="lesson">
+      <div class="lhead"><span class="lnum">23</span><h4>How Anchor maps to chain reality</h4></div>
+      <p>Demystify Anchor concepts by translating them into the underlying transaction and account model.</p>
+      <ul class="pts">
+        <li>Map <span class="code">Context&lt;...&gt;</span>, <span class="code">#[account]</span>, <span class="code">Signer</span>, <span class="code">Program</span>, seeds, and bumps</li>
+        <li>Explain account discriminators and instruction discriminators</li>
+        <li>Show how constraints become runtime validation logic</li>
+      </ul>
+      <div class="chips"><span class="chip">Context</span><span class="chip">constraints</span><span class="chip">discriminators</span></div>
+    </div>
+    <div class="lesson">
+      <div class="lhead"><span class="lnum">24</span><h4>Common account validation patterns</h4></div>
+      <p>The validation checks that determine whether a Solana program is safe to call with user-supplied accounts.</p>
+      <ul class="pts">
+        <li>Check signer, owner, executable status, PDA seeds, mint relationships, token account owner, and authority</li>
+        <li>Explain account substitution as a core Solana threat model</li>
+        <li>Create a reusable validation checklist for code review</li>
+      </ul>
+      <div class="chips"><span class="chip">owner checks</span><span class="chip">signer checks</span><span class="chip">PDA checks</span></div>
+    </div>
+    <div class="lesson">
+      <div class="lhead"><span class="lnum">25</span><h4>Reallocation and resizing</h4></div>
+      <p>How account data can grow or shrink, who pays for the additional rent exemption, and what can go wrong.</p>
+      <ul class="pts">
+        <li>Introduce <span class="code">realloc</span>, zeroing behavior, payer responsibilities, and max-size planning</li>
+        <li>Discuss stale bytes, partial initialization, and account growth as an attack surface</li>
+        <li>Compare dynamic storage expectations from Solidity with explicit byte-size management on Solana</li>
+      </ul>
+      <div class="chips"><span class="chip">realloc</span><span class="chip">account size</span><span class="chip">rent payer</span></div>
+    </div>
+  </details>
+
+  <details class="theme">
+    <summary><span class="pnum">T6</span><span class="tname">Decoding and tracing transactions</span><span class="phase-mark p1">Phase 1</span><span class="tcount">6 lessons</span><span class="chev">›</span></summary>
+    <div class="tgoal"><b>Goal</b> · Move from explorer screenshots to raw transaction literacy: messages, account indexes, compiled instructions, and inner calls.</div>
+    <div class="lesson">
+      <div class="lhead"><span class="lnum">26</span><h4>Reading a raw Solana transaction</h4></div>
+      <p>Start from RPC transaction JSON and build a systematic reader's map.</p>
+      <ul class="pts">
+        <li>Identify signatures, message header, account keys, recent blockhash, instructions, balances, logs, and metadata</li>
+        <li>Separate top-level transaction structure from program-specific decoded meaning</li>
+        <li>Create a repeatable first-pass checklist for any transaction hash</li>
+      </ul>
+      <div class="chips"><span class="chip">getTransaction</span><span class="chip">message</span><span class="chip">metadata</span></div>
+    </div>
+    <div class="lesson">
+      <div class="lhead"><span class="lnum">27</span><h4>Compiled instructions</h4></div>
+      <p>Why raw instructions reference accounts and programs by index rather than repeating full addresses.</p>
+      <ul class="pts">
+        <li>Decode <span class="code">programIdIndex</span>, <span class="code">accounts</span>, and raw <span class="code">data</span></li>
+        <li>Map compiled instruction indexes back to the transaction account list</li>
+        <li>Show why this is compact for the chain but confusing for humans</li>
+      </ul>
+      <div class="chips"><span class="chip">compiled ix</span><span class="chip">indexes</span><span class="chip">raw data</span></div>
+    </div>
+    <div class="lesson">
+      <div class="lhead"><span class="lnum">28</span><h4>Inner instructions</h4></div>
+      <p>CPI trace reading by following the inner instructions emitted beneath each top-level instruction.</p>
+      <ul class="pts">
+        <li>Identify which top-level instruction generated each inner instruction group</li>
+        <li>Use inner instructions to find token transfers, account creations, and downstream program calls</li>
+        <li>Explain how nested behavior reveals the real protocol interaction graph</li>
+      </ul>
+      <div class="chips"><span class="chip">inner ix</span><span class="chip">CPI trace</span><span class="chip">nesting</span></div>
+    </div>
+    <div class="lesson">
+      <div class="lhead"><span class="lnum">29</span><h4>Decoding program data</h4></div>
+      <p>Decode instruction payloads and account bytes using Anchor IDLs, discriminators, known schemas, or manual layouts.</p>
+      <ul class="pts">
+        <li>Use the first 8 bytes for Anchor instruction discriminator matching</li>
+        <li>Use an IDL when available, then fall back to schema inference when unavailable</li>
+        <li>Connect decoded arguments to code branches and account mutations</li>
+      </ul>
+      <div class="chips"><span class="chip">IDL</span><span class="chip">discriminator</span><span class="chip">byte layout</span></div>
+    </div>
+    <div class="lesson">
+      <div class="lhead"><span class="lnum">30</span><h4>Tracing token flows</h4></div>
+      <p>Reconstruct asset movement from balances, token balance arrays, inner instructions, closures, and creations.</p>
+      <ul class="pts">
+        <li>Compare <span class="code">pre/post</span> SOL balances and <span class="code">pre/post</span> token balances</li>
+        <li>Find hidden transfers inside CPIs instead of trusting explorer summaries</li>
+        <li>Account for rent refunds when accounts are closed</li>
+      </ul>
+      <div class="chips"><span class="chip">token balances</span><span class="chip">SOL balances</span><span class="chip">rent refunds</span></div>
+    </div>
+    <div class="lesson">
+      <div class="lhead"><span class="lnum">31</span><h4>Address Lookup Tables in versioned transactions</h4></div>
+      <p>v0 transactions and how Address Lookup Tables allow larger account sets without listing every key directly.</p>
+      <ul class="pts">
+        <li>Distinguish static account keys from loaded addresses</li>
+        <li>Reconstruct the full account list before decoding compiled instructions</li>
+        <li>Explain why traces can look incomplete until lookup table addresses are resolved</li>
+      </ul>
+      <div class="chips"><span class="chip">v0 tx</span><span class="chip">loaded addresses</span><span class="chip">lookup tables</span></div>
+    </div>
+  </details>
+
+  <details class="theme">
+    <summary><span class="pnum">T7</span><span class="tname">Protocol architecture</span><span class="phase-mark p2">Phase 2</span><span class="tcount">6 lessons</span><span class="chev">›</span></summary>
+    <div class="tgoal"><b>Goal</b> · Design systems around explicit state accounts, write locks, PDA authorities, indexers, and upgrade risk.</div>
+    <div class="lesson">
+      <div class="lhead"><span class="lnum">32</span><h4>How protocol state is usually partitioned</h4></div>
+      <p>The common account layout patterns used by Solana protocols.</p>
+      <ul class="pts">
+        <li>Global config, market/state accounts, vaults, user positions, authority PDAs, and escrow accounts</li>
+        <li>Explain why separating state improves concurrency and auditability</li>
+        <li>Map a simple lending or DEX protocol into account types</li>
+      </ul>
+      <div class="chips"><span class="chip">config</span><span class="chip">vault</span><span class="chip">positions</span></div>
+    </div>
+    <div class="lesson">
+      <div class="lhead"><span class="lnum">33</span><h4>Concurrency-aware design</h4></div>
+      <p>How Solana architecture changes when every writable account can become a throughput bottleneck.</p>
+      <ul class="pts">
+        <li>Avoid global mutable counters or single hot state accounts where possible</li>
+        <li>Shard state by user, market, epoch, pool, or position</li>
+        <li>Design instruction paths so unrelated users can execute in parallel</li>
+      </ul>
+      <div class="chips"><span class="chip">write locks</span><span class="chip">sharding</span><span class="chip">throughput</span></div>
+    </div>
+    <div class="lesson">
+      <div class="lhead"><span class="lnum">34</span><h4>Authority design</h4></div>
+      <p>Admin keys, PDA authorities, token authorities, multisigs, governance, and delegated control compared.</p>
+      <ul class="pts">
+        <li>Ask who can move funds, change parameters, mint tokens, pause flows, or upgrade programs</li>
+        <li>Explain why PDA authorities are central to vault and escrow design</li>
+        <li>Create a basic authority-threat model for any protocol</li>
+      </ul>
+      <div class="chips"><span class="chip">PDA authority</span><span class="chip">multisig</span><span class="chip">governance</span></div>
+    </div>
+    <div class="lesson">
+      <div class="lhead"><span class="lnum">35</span><h4>Upgradeable programs</h4></div>
+      <p>Solana's upgradeable program model and why upgrade authority is one of the biggest trust assumptions.</p>
+      <ul class="pts">
+        <li>Introduce program accounts, program data accounts, and upgrade authority</li>
+        <li>Discuss operational patterns: locked, multisig-controlled, timelocked, or actively upgraded</li>
+        <li>Frame upgradeability as both a product need and a security risk</li>
+      </ul>
+      <div class="chips"><span class="chip">upgrade authority</span><span class="chip">program data</span><span class="chip">trust model</span></div>
+    </div>
+    <div class="lesson">
+      <div class="lhead"><span class="lnum">36</span><h4>Event design and offchain indexing</h4></div>
+      <p>How protocols make activity readable for frontends, explorers, and indexers.</p>
+      <ul class="pts">
+        <li>Use logs, Anchor events, account changes, transaction metadata, and custom indexers</li>
+        <li>Explain what makes a protocol easy or painful to index</li>
+        <li>Connect event design to analytics, UX, monitoring, and compliance needs</li>
+      </ul>
+      <div class="chips"><span class="chip">logs</span><span class="chip">events</span><span class="chip">indexers</span></div>
+    </div>
+    <div class="lesson">
+      <div class="lhead"><span class="lnum">37</span><h4>Oracle integrations</h4></div>
+      <p>Price account validation and oracle safety using common providers like Pyth and Switchboard.</p>
+      <ul class="pts">
+        <li>Validate the oracle account, feed identity, freshness, confidence interval, and quote/base assumptions</li>
+        <li>Discuss stale prices, wrong feed substitution, and manipulation-resistant design</li>
+        <li>Show how oracle checks become account validation plus data validation</li>
+      </ul>
+      <div class="chips"><span class="chip">Pyth</span><span class="chip">Switchboard</span><span class="chip">staleness</span></div>
+    </div>
+  </details>
+
+  <details class="theme">
+    <summary><span class="pnum">T8</span><span class="tname">Security patterns and failure modes</span><span class="phase-mark p2">Phase 2</span><span class="tcount">6 lessons</span><span class="chev">›</span></summary>
+    <div class="tgoal"><b>Goal</b> · Study the bug classes that repeatedly appear in Solana audits and real protocols.</div>
+    <div class="lesson">
+      <div class="lhead"><span class="lnum">38</span><h4>Solana-specific security mindset</h4></div>
+      <p>The core Solana threat model: users submit account lists, and programs must verify every account that matters.</p>
+      <ul class="pts">
+        <li>Assume attackers can substitute accounts unless validation prevents it</li>
+        <li>Check owner, signer, PDA seeds, relationships, token program, mint, authority, and initialization state</li>
+        <li>Translate the lesson into a security review checklist</li>
+      </ul>
+      <div class="chips"><span class="chip">account substitution</span><span class="chip">validation</span><span class="chip">checklist</span></div>
+    </div>
+    <div class="lesson">
+      <div class="lhead"><span class="lnum">39</span><h4>CPI risks</h4></div>
+      <p>How cross-program calls create confused-deputy and privilege-forwarding risks.</p>
+      <ul class="pts">
+        <li>Study malicious program substitution and unsafe downstream assumptions</li>
+        <li>Track signer and writable privileges across CPI boundaries</li>
+        <li>Discuss defensive CPI patterns and explicit program-id checks</li>
+      </ul>
+      <div class="chips"><span class="chip">confused deputy</span><span class="chip">privileges</span><span class="chip">program checks</span></div>
+    </div>
+    <div class="lesson">
+      <div class="lhead"><span class="lnum">40</span><h4>Reinitialization and duplicate initialization bugs</h4></div>
+      <p>Bugs that happen when programs fail to distinguish fresh accounts from previously initialized accounts.</p>
+      <ul class="pts">
+        <li>Check discriminators, version fields, initialization flags, and expected zeroed state</li>
+        <li>Discuss close-and-reopen edge cases and stale data</li>
+        <li>Compare Anchor <span class="code">init</span>, <span class="code">init_if_needed</span>, and manual initialization patterns</li>
+      </ul>
+      <div class="chips"><span class="chip">init</span><span class="chip">stale data</span><span class="chip">lifecycle</span></div>
+    </div>
+    <div class="lesson">
+      <div class="lhead"><span class="lnum">41</span><h4>Precision and math issues</h4></div>
+      <p>Financial math hazards that become protocol-breaking when balances, shares, prices, and decimals interact.</p>
+      <ul class="pts">
+        <li>Study integer division, rounding direction, decimal mismatches, overflow assumptions, and share accounting</li>
+        <li>Track invariants like <span class="code">total assets vs total shares</span></li>
+        <li>Show why a "small rounding issue" can become a drain vector</li>
+      </ul>
+      <div class="chips"><span class="chip">rounding</span><span class="chip">decimals</span><span class="chip">invariants</span></div>
+    </div>
+    <div class="lesson">
+      <div class="lhead"><span class="lnum">42</span><h4>Denial-of-service and lock contention</h4></div>
+      <p>Non-theft failures where an attacker or bad architecture prevents useful transactions from landing.</p>
+      <ul class="pts">
+        <li>Hot writable accounts, compute exhaustion, oversized data, and griefing through account creation</li>
+        <li>Explain how throughput design and security design overlap</li>
+        <li>Design mitigations: sharding, limits, preflight checks, and bounded loops</li>
+      </ul>
+      <div class="chips"><span class="chip">DoS</span><span class="chip">compute</span><span class="chip">hot accounts</span></div>
+    </div>
+    <div class="lesson">
+      <div class="lhead"><span class="lnum">43</span><h4>Upgradeable program risk</h4></div>
+      <p>Governance and operational security risks around upgradeable Solana programs.</p>
+      <ul class="pts">
+        <li>Analyze compromised upgrade authority, rushed emergency upgrades, opaque admin controls, missing timelocks</li>
+        <li>Compare immutable, governance-controlled, and multisig-controlled deployments</li>
+        <li>Teach users how to read upgrade status as part of protocol due diligence</li>
+      </ul>
+      <div class="chips"><span class="chip">governance</span><span class="chip">timelocks</span><span class="chip">deployment risk</span></div>
+    </div>
+  </details>
+
+  <details class="theme">
+    <summary><span class="pnum">T9</span><span class="tname">Historical exploit labs</span><span class="phase-mark p2">Phase 2</span><span class="tcount">expanding</span><span class="chev">›</span></summary>
+    <div class="tgoal"><b>Goal</b> · Use real exploit transactions as guided labs for tracing account interactions, code paths, and missing validations.</div>
+    <div class="lesson">
+      <div class="lhead"><span class="lnum">44</span><h4>Exploit dissections: decode the tx, map the code path, find the failure</h4></div>
+      <p>Real exploit incidents as guided labs combining transaction tracing, account mapping, code reading, and security reasoning.</p>
+      <ul class="pts">
+        <li>Start with the exploit transaction hash, not the blog-post summary</li>
+        <li>Decode top-level and inner instructions, label accounts, and reconstruct token flows</li>
+        <li>Map the exploit path to source code and isolate the missing check or flawed invariant</li>
+        <li>Candidate labs: <span class="code">Wormhole</span> (signature verification), <span class="code">Cashio</span> (account validation), <span class="code">Mango</span> (oracle manipulation), <span class="code">Crema</span> — expanding into 3–5 named labs during Phase 2 planning</li>
+      </ul>
+      <div class="chips"><span class="chip">exploit lab</span><span class="chip">trace</span><span class="chip">root cause</span></div>
+    </div>
+  </details>
+
+  <details class="theme">
+    <summary><span class="pnum">T10</span><span class="tname">Reverse engineering and capstones</span><span class="phase-mark p2">Phase 2</span><span class="tcount">5 lessons</span><span class="chev">›</span></summary>
+    <div class="tgoal"><b>Goal</b> · Graduate from guided examples into independent analysis of unknown programs, complex traces, and full architecture case studies.</div>
+    <div class="lesson">
+      <div class="lhead"><span class="lnum">45</span><h4>From transaction hash to source-code understanding</h4></div>
+      <p>A repeatable workflow for turning a transaction hash into an understandable execution story.</p>
+      <ul class="pts">
+        <li>Identify programs, fetch source or IDL, resolve lookup tables, decode instructions, and label accounts</li>
+        <li>Follow inner instructions and logs to build a chronological trace</li>
+        <li>Connect decoded arguments and accounts to source-code branches</li>
+      </ul>
+      <div class="chips"><span class="chip">trace workflow</span><span class="chip">source mapping</span><span class="chip">IDL</span></div>
+    </div>
+    <div class="lesson">
+      <div class="lhead"><span class="lnum">46</span><h4>Reverse engineering an unknown program</h4></div>
+      <p>Practical analysis when a program has no clear docs, source, or IDL.</p>
+      <ul class="pts">
+        <li>Look for Anchor fingerprints, instruction discriminators, account-size patterns, repeated account relationships</li>
+        <li>Compare multiple transactions to infer schemas and state transitions</li>
+        <li>Use token flows and authority relationships as anchors for understanding</li>
+      </ul>
+      <div class="chips"><span class="chip">reverse engineering</span><span class="chip">schema inference</span><span class="chip">unknown program</span></div>
+    </div>
+    <div class="lesson">
+      <div class="lhead"><span class="lnum">47</span><h4>Explorer tooling and RPC methods</h4></div>
+      <p>The practical toolkit for serious Solana analysis.</p>
+      <ul class="pts">
+        <li>Use explorers for first-pass investigation, then RPC for reliable structured data</li>
+        <li>Cover <span class="code">getTransaction</span>, <span class="code">getAccountInfo</span>, <span class="code">getProgramAccounts</span>, simulation, logs, and filters</li>
+        <li>Explain when a custom script beats a block explorer</li>
+      </ul>
+      <div class="chips"><span class="chip">RPC</span><span class="chip">explorers</span><span class="chip">simulation</span></div>
+    </div>
+    <div class="lesson">
+      <div class="lhead"><span class="lnum">48</span><h4>Building your own decoder scripts</h4></div>
+      <p>Small scripts that automate the repetitive parts of transaction tracing and program analysis.</p>
+      <ul class="pts">
+        <li>Parse transaction JSON, resolve lookup tables, decode Anchor discriminators, label account indexes</li>
+        <li>Reconstruct human-readable token movements and CPI trees</li>
+        <li>Treat scripts as reusable audit and architecture tools</li>
+      </ul>
+      <div class="chips"><span class="chip">decoder scripts</span><span class="chip">automation</span><span class="chip">tooling</span></div>
+    </div>
+    <div class="lesson">
+      <div class="lhead"><span class="lnum">49</span><h4>Architecture case studies: DEX, lending, staking, and perpetuals</h4></div>
+      <p>Bring the course together by comparing how major Solana protocol categories structure accounts, authorities, and settlement flows.</p>
+      <ul class="pts">
+        <li>Compare DEX pools/order books, lending markets, staking vaults, and perp engines</li>
+        <li>Identify shared patterns: config accounts, vaults, user positions, oracle reads, and authority PDAs</li>
+        <li>End with a design review exercise for a new protocol architecture</li>
+      </ul>
+      <div class="chips"><span class="chip">DEX</span><span class="chip">lending</span><span class="chip">perps</span></div>
+    </div>
+  </details>
+</section>
+
+<section id="production">
+  <div class="eyebrow">production model</div>
+  <h2>One lesson, five artifacts</h2>
+  <p>The curriculum is structured to become a repeatable content pipeline. Tone: practical, developer-native, conversational. The recurring narrative: "I already know Ethereum. What do I need to unlearn, relearn, and practice to become effective on Solana?"</p>
+  <div class="steps">
+    <div class="step"><div><h4>Learn the micro-lesson</h4><p>The host works through one focused lesson conversationally until the concept is clear enough to teach.</p></div></div>
+    <div class="step"><div><h4>Convert to slides</h4><p>A 3–5 slide mini-deck: one core idea, one Ethereum comparison, one Solana example, one gotcha.</p></div></div>
+    <div class="step"><div><h4>Teach it live</h4><p>Host teaches a colleague who is also learning Solana. Authentic peer-learning livestreams, held as X Spaces cohosted from <span class="code">@VellumNetwork</span> <span class="code">@ClanWorldGame</span> <span class="code">@ChaintailLabs</span> <span class="code">@Mikail_xyz</span>.</p></div></div>
+    <div class="step"><div><h4>Edit into shorts</h4><p>The best explanation is cut into a short optimized for X, TikTok, Instagram Reels, and YouTube Shorts.</p></div></div>
+    <div class="step"><div><h4>Publish the series</h4><p>Each lesson stands alone; the full set becomes a structured Solana onboarding course for EVM developers, published under Vellum Network.</p></div></div>
+  </div>
+</section>
+
+<section id="effort">
+  <div class="eyebrow">effort model</div>
+  <h2>Where the hours go</h2>
+  <p>Full-course estimate: <strong>200–250 combined team hours</strong> across two contributors. Early lessons are cheap to research but expensive while the format stabilizes; later lessons flip that, with technical prep dominating as the series moves into tracing and exploit analysis.</p>
+  <div class="tiers">
+    <div class="tier">
+      <div class="trow"><h4>Early foundations · T1–T2</h4><span class="hrs">~2–4 hrs / lesson</span></div>
+      <p>Addresses, lamports, transactions, programs, basic execution model.</p>
+      <div class="bar"><i class="b-prep" style="width:25%"></i><i class="b-rec" style="width:25%"></i><i class="b-edit" style="width:50%"></i></div>
+      <div class="legend"><span class="dot b-prep"></span><b>Prep 25%</b><span class="dot b-rec"></span><b>Record 25%</b><span class="dot b-edit"></span><b>Edit 50%</b></div>
+    </div>
+    <div class="tier">
+      <div class="trow"><h4>Middle implementation · T3–T5</h4><span class="hrs">~3–5 hrs / lesson</span></div>
+      <p>PDAs, SPL tokens, Anchor, account validation, standard programs.</p>
+      <div class="bar"><i class="b-prep" style="width:40%"></i><i class="b-rec" style="width:25%"></i><i class="b-edit" style="width:35%"></i></div>
+      <div class="legend"><span class="dot b-prep"></span><b>Prep 40%</b><span class="dot b-rec"></span><b>Record 25%</b><span class="dot b-edit"></span><b>Edit 35%</b></div>
+    </div>
+    <div class="tier">
+      <div class="trow"><h4>Advanced tracing &amp; architecture · T6–T7</h4><span class="hrs">~5–8 hrs / lesson</span></div>
+      <p>Raw transactions, inner instructions, token flows, protocol design patterns.</p>
+      <div class="bar"><i class="b-prep" style="width:55%"></i><i class="b-rec" style="width:20%"></i><i class="b-edit" style="width:25%"></i></div>
+      <div class="legend"><span class="dot b-prep"></span><b>Prep 55%</b><span class="dot b-rec"></span><b>Record 20%</b><span class="dot b-edit"></span><b>Edit 25%</b></div>
+    </div>
+    <div class="tier">
+      <div class="trow"><h4>Exploit &amp; RE labs · T8–T10</h4><span class="hrs">~8–15 hrs / lesson</span></div>
+      <p>Historical exploits, code-path mapping, unknown program analysis, decoder scripts.</p>
+      <div class="bar"><i class="b-prep" style="width:70%"></i><i class="b-rec" style="width:15%"></i><i class="b-edit" style="width:15%"></i></div>
+      <div class="legend"><span class="dot b-prep"></span><b>Prep 70%</b><span class="dot b-rec"></span><b>Record 15%</b><span class="dot b-edit"></span><b>Edit 15%</b></div>
+    </div>
+  </div>
+</section>
+
+<section id="scope">
+  <div class="eyebrow">proposed grant scope</div>
+  <h2>Phase 1: foundations to transaction literacy</h2>
+  <div class="ask">
+    <div class="eyebrow">the ask</div>
+    <h3>31 lessons · 31 shorts · 6 livestreams · <span class="grad-text">$10,000</span></h3>
+    <p>Take a developer from zero Solana knowledge to <b>independently reading and decoding real transactions from raw JSON</b>. Estimated 105–165 combined team hours across research, slides, livestreams, and short-form editing. Roughly 60% of the course for about 45% of the total effort: the deep-research exploit and architecture content is deliberately held for Phase 2.</p>
+  </div>
+  <div class="deliv">
+    <div class="deliv-label">Phase 1 committed deliverables</div>
+    <ul class="deliv-list">
+      <li>31 micro-lesson outlines (themes 1–6)</li>
+      <li>31 short-form videos</li>
+      <li>6 livestreams or recorded teaching sessions, one per theme</li>
+      <li>31 mini slide decks (3–5 slides each)</li>
+      <li>Open-source curriculum repo (CC-BY)</li>
+      <li>Public retrospective with real metrics</li>
+    </ul>
+  </div>
+  <div class="milestones">
+    <div class="ms"><span class="mtag">M1 · 30%</span><div><h4>Format pilot <span>· ~3 weeks</span></h4><p>Lessons 1–5 fully shipped: slide decks, one livestream, five published shorts, plus the reusable slide template and editing workflow. If the format doesn't work, everyone finds out cheaply.</p></div></div>
+    <div class="ms"><span class="mtag">M2 · 40%</span><div><h4>Core execution <span>· ~5 weeks</span></h4><p>Lessons 6–20 shipped (execution, state layout, standard programs) at a ~3 lesson/week cadence, one livestream per theme.</p></div></div>
+    <div class="ms"><span class="mtag">M3 · 30%</span><div><h4>Program &amp; transaction literacy <span>· ~3 weeks</span></h4><p>Lessons 21–31 shipped (Rust/Anchor reading, transaction decoding). All 31 shorts published, slide decks open-sourced (CC-BY) with notes and helper scripts where useful, plus a public retrospective with real metrics.</p></div></div>
+  </div>
+  <div class="callout">
+    <p><strong>Phase 2 (follow-on application): themes 7–10.</strong> Protocol architecture, security patterns, historical exploit labs, and reverse-engineering capstones. The deeper, more expensive arc, and arguably a standalone security-education series. We'd rather earn it with a shipped Phase 1 and real audience data than promise all 49 lessons upfront.</p>
+  </div>
+</section>
+
+<section id="team">
+  <div class="eyebrow">who we are</div>
+  <h2>Brief, since you know us</h2>
+  <p>Two technical co-founders, EVM-native since 2016, actively shipping on Solana (Clan World, Vellum Network) with smart contract audit background via Chaintail Labs. This curriculum is the actual roadmap we built to train ourselves; the series is us learning it in public. Full bios and track record will go in the formal application.</p>
+</section>
+
+<section id="questions">
+  <div class="eyebrow">open questions for mentors</div>
+  <h2>Where we want your honest read</h2>
+  <div class="q"><span class="qn">Q1</span><div><h4>Fit</h4><p>Is a developer education series the kind of project this grant is meant for, or is the program weighted toward product and protocol work?</p></div></div>
+  <div class="q"><span class="qn">Q2</span><div><h4>Scope</h4><p>Does themes 1–6 for $10k feel right, or would you cut the phases differently?</p></div></div>
+  <div class="q"><span class="qn">Q3</span><div><h4>Distribution</h4><p>Our honest weak spot. Plan: shorts on X and TikTok, livestreams as X Spaces cohosted from personal and project accounts, published under the Vellum Network brand. Would Superteam Canada amplify episodes? Do Solana Foundation education channels repost this kind of content?</p></div></div>
+  <div class="q"><span class="qn">Q4</span><div><h4>Phasing</h4><p>Is a follow-on grant for the advanced half (architecture, security, exploit labs) realistic if Phase 1 delivers?</p></div></div>
+  <div class="q"><span class="qn">Q5</span><div><h4>Format</h4><p>Does learning-in-public, two experienced devs genuinely learning on camera, read as a strength? Or should we position this as polished tutorial content?</p></div></div>
+</section>
+
+<footer>
+  <div class="rule"></div>
+  <div class="footer-row">
+    <img class="footer-logo" src="https://vellum.network/assets/vellum-mark-cropped.png" alt="Vellum Network">
+    <p><b>Vellum Network</b> · Solana Foundation Canada Grants (via Superteam) · Draft v3 for mentor feedback · July 2026</p>
+  </div>
+</footer>
+
+</div>
+</main>
+</body>
+</html>
