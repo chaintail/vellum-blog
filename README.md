@@ -1,3 +1,5 @@
+> ⚠️ **Migrating:** canonical development now happens in [chaintail/vellum](https://github.com/chaintail/vellum) (`apps/blog`). This repo remains the deploy source until cutover completes.
+
 # Astro Starter Kit: Minimal
 
 ```sh
