@@ -28,6 +28,10 @@ entities:
     sameAs: "https://0xpulseplay.com"
 ---
 
+<video controls preload="metadata" style="width:100%;border-radius:12px" src="https://shared.claude.do/public/fairline-blog-demo.mp4"></video>
+
+*Real footage from today's final (captured on the earlier interface): FairLine riding out a verified 60.1-second gap in TxLINE odds updates over half-time. The gap duration is a feed-log fact — the clip shows the app holding steady through it live, not a visual proof of the exact figure.*
+
 We built FairLine for the Superteam Earn × TxODDS World Cup hackathon, and tonight it did the thing it was built to do: it priced the real 2026 World Cup Final, live, off TxODDS' TxLINE feed, while Spain and Argentina played it out to the second period of extra time.
 
 **FairLine is a model-vs-market pricing oracle for in-play soccer** — it reprices a match continuously from real score and clock state, and publishes its own fair odds as a public feed of cryptographically signed data, right alongside the market's own consensus, so its "edge" against the market is something anyone can check tick by tick instead of a claim they have to trust.
